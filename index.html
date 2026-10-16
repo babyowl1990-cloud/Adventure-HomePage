@@ -31,7 +31,7 @@ main{display:flex;flex-direction:column;align-items:center;justify-content:cente
 @keyframes br{50%{transform:scale(1.1)}}
 #owl{position:absolute;top:-2.3rem;left:50%;width:3.6rem;transform:translateX(-50%);cursor:pointer;z-index:5;filter:drop-shadow(0 0 10px var(--a));animation:bob 4.5s ease-in-out infinite}
 @keyframes bob{50%{transform:translateX(-50%) translateY(-5px) rotate(-2deg)}}
-#owl.gold{filter:drop-shadow(0 0 16px #ffd76b)}
+#owl.gold{--o1:#ffe9a8;--o2:#c9861a;filter:drop-shadow(0 0 14px rgba(255,214,120,.7))}#owl.gold .iris{fill:#ffd76b}#owl.gold .bk{fill:#ffb347}#owl.gold .all{animation:shim 3s ease-in-out infinite}@keyframes shim{50%{filter:brightness(1.22) saturate(1.15)}}
 #bub{position:absolute;top:-5.4rem;left:50%;transform:translateX(-50%);max-width:14rem;padding:.4rem .7rem;font-size:.68rem;background:var(--panel);border:1px solid var(--edge);border-radius:10px;backdrop-filter:blur(8px);opacity:0;transition:opacity .25s;pointer-events:none;z-index:6}
 #bub.show{opacity:1}
 h1{font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(2.2rem,9vw,3.4rem);letter-spacing:.14em;margin:1rem 0 .1rem;background:linear-gradient(90deg,var(--a),var(--a2) 60%,var(--a3));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -43,7 +43,7 @@ h1{font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(2.2rem,9vw,3.
 .wc small{display:block;font-size:.6rem;letter-spacing:.08em;color:var(--mu);text-transform:uppercase}
 footer{display:flex;align-items:center;gap:.5rem;padding:.55rem .8rem;background:var(--panel);backdrop-filter:blur(18px);border-top:1px solid var(--edge)}
 #tasks{flex:1;display:flex;gap:.4rem;overflow-x:auto}
-button.b{font:inherit;font-size:.72rem;color:var(--tx);background:var(--panel);border:1px solid var(--edge);padding:.45rem .75rem;border-radius:10px;cursor:pointer;white-space:nowrap}
+button.b,label.b{font:inherit;font-size:.72rem;color:var(--tx);background:var(--panel);border:1px solid var(--edge);padding:.45rem .75rem;border-radius:10px;cursor:pointer;white-space:nowrap}
 button.b:hover{border-color:var(--a)}
 .win{position:fixed;width:min(92vw,380px);max-height:72dvh;display:flex;flex-direction:column;background:var(--panel);backdrop-filter:blur(20px) saturate(150%);border:1px solid var(--edge);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.4);z-index:10;overflow:hidden}
 .wh{display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border-bottom:1px solid var(--edge);font-size:.78rem;cursor:grab;touch-action:none;user-select:none}
@@ -55,7 +55,7 @@ textarea{width:100%;max-width:100%;min-height:10rem;resize:vertical}
 .row{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--edge);padding:.25rem 0}
 #toast{position:fixed;left:50%;bottom:4.5rem;transform:translateX(-50%);padding:.5rem .9rem;background:var(--panel);border:1px solid var(--a);border-radius:10px;font-size:.72rem;opacity:0;transition:opacity .3s;z-index:20;pointer-events:none;backdrop-filter:blur(10px)}
 #toast.show{opacity:1}
-body.idle header,body.idle footer,body.idle .icons,body.idle #worlds,body.idle #hint{opacity:0;pointer-events:none}body.idle #msg{pointer-events:none}
+body.idle header,body.idle footer,body.idle .icons,body.idle #worlds,body.idle #hint,body.idle #ctl{opacity:0;pointer-events:none}body.idle #msg{pointer-events:none}
 body.idle .orbwrap{transform:scale(1.3)}body.idle{cursor:none}
 body.witch{animation:wf 6s ease-in-out infinite}
 @keyframes wf{50%{filter:hue-rotate(-24deg) brightness(.9)}}
@@ -116,6 +116,13 @@ body.idle .sn{opacity:0;pointer-events:none}
 #msg{cursor:text;transition:border-color .2s}#msg:hover{border-color:var(--a)}#msg:focus{border-style:solid;border-color:var(--a)}
 #msg::after{content:" ✎";color:var(--mu);opacity:.55;font-size:.7rem}#msg:focus::after{content:""}
 #hint{margin-top:.5rem;font-size:.6rem;color:var(--mu);opacity:.6;transition:opacity .8s}
+#log{width:min(30rem,92%);height:4.7em;overflow:hidden;font-size:.64rem;line-height:1.55;color:var(--mu);text-align:left;margin-top:.7rem;border-top:1px solid var(--ed);padding-top:.35rem}
+#log div{animation:lf .5s both}#log .tg{color:var(--a)}@keyframes lf{from{opacity:0}to{opacity:.9}}#ctl{margin-top:.5rem}
+label.b{display:inline-flex;align-items:center;flex-direction:row;gap:.35rem}
+.win.big{width:min(94vw,780px);height:min(78dvh,640px);max-height:none;resize:both}
+.wb.fr{padding:0;flex:1;min-height:0;gap:0}
+.fbar{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;padding:.4rem .6rem;border-bottom:1px solid var(--edge);font-size:.66rem;color:var(--mu)}
+.wb.fr iframe{flex:1;width:100%;min-height:0;border:0;background:#fff}
 /* minimise */
 .wbtns{display:flex;gap:.3rem}.b.min{opacity:.55;font-style:italic}
 @media(prefers-reduced-motion:reduce){#owl .dz circle,#owl .zz,#owl .hr,.core.unstable{animation:none}}
@@ -131,7 +138,7 @@ body.idle .sn{opacity:0;pointer-events:none}
 <nav class="icons" id="icons"></nav>
 <main>
   <div class="orbwrap">
-    <svg id="owl" viewBox="0 0 64 64"><defs><linearGradient id="og" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c3a6ff"/><stop offset="1" stop-color="#6a3fd6"/></linearGradient></defs>
+    <svg id="owl" viewBox="0 0 64 64"><defs><linearGradient id="og" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--o1,#c3a6ff)"/><stop offset="1" style="stop-color:var(--o2,#6a3fd6)"/></linearGradient></defs>
       <g class="all">
       <path d="M17 13L24 27 12 24Z" fill="url(#og)"/><path d="M47 13L40 27 52 24Z" fill="url(#og)"/>
       <ellipse cx="32" cy="37" rx="21" ry="19" fill="url(#og)"/><circle cx="32" cy="35" r="15.5" fill="#150a28" opacity=".6"/>
@@ -153,16 +160,16 @@ body.idle .sn{opacity:0;pointer-events:none}
   </div>
   <h1>AFK</h1><div id="timer">00:00:00</div>
   <div id="msg" contenteditable="true" spellcheck="false" role="textbox" aria-label="status message" title="click to edit your status">roosting for a bit — hoot if urgent</div>
-  <div id="worlds"></div><div id="hint">click the message to edit it · click the orb for a new chord · drag the orb around</div>
+  <div id="worlds"></div><div id="log"></div><div id="hint">click the message to edit it · 📂 imports your own .html files · click the orb for a new chord</div>
 </main>
 <div id="wins"></div><div id="toast"></div>
-<footer><button class="b" id="start">🦉 OWL</button><div id="tasks"></div><button class="b" id="gear" title="settings">⚙</button><button class="b" id="play">▶ haze</button><span id="wk" style="font-size:.65rem;color:var(--mu)"></span></footer>
+<footer><button class="b" id="start">🦉 OWL</button><div id="tasks"></div><button class="b" id="gear" title="settings">⚙</button><button class="b" id="play">▶ haze</button><label class="b" id="upl" title="import an .html file — it becomes an app on your start page" style="cursor:pointer">📂 html<input id="hfi" type="file" accept=".html,.htm,text/html" multiple hidden></label><button class="b" id="cp" title="copy a Discord / Slack-ready AFK line">📋 status</button><input id="qf" type="file" accept="audio/*,video/*" hidden><span id="wk" style="font-size:.65rem;color:var(--mu)"></span></footer>
 
 <script>
 const $=s=>document.querySelector(s);
 const ST={get(k,d){try{const v=localStorage.getItem('on:'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('on:'+k,JSON.stringify(v))}catch(e){}}};
-const K=['mail','mode','sr','ss','acc','witch','wh','saver','links','hoots','msg','hid','pos','stk','wxp','unit','aw','twi'];
-const D={mail:'',mode:'auto',sr:'06:30',ss:'18:30',acc:'',witch:true,wh:-1,saver:true,links:[],hoots:0,msg:null,hid:[],pos:{},stk:[],wxp:null,unit:'C',aw:false,twi:60};
+const K=['mail','mode','sr','ss','acc','witch','wh','saver','links','hoots','msg','hid','pos','stk','wxp','unit','aw','twi','ey','fl'];
+const D={mail:'',mode:'auto',sr:'06:30',ss:'18:30',acc:'',witch:true,wh:-1,saver:true,links:[],hoots:0,msg:null,hid:[],pos:{},stk:[],wxp:null,unit:'C',aw:false,twi:60,ey:false,fl:[]};
 const S={};K.forEach(k=>S[k]=ST.get(k,D[k]));
 const save=()=>K.forEach(k=>ST.set(k,S[k]));
 S.links.forEach(l=>{l.id=l.id||'l'+Math.random().toString(36).slice(2,8)});
@@ -197,14 +204,15 @@ function paintMood(){const m=mOv||baseMood();if(owl.dataset.m!==m)owl.dataset.m=
 function mood(m,ms){if(ms){mOv=m;clearTimeout(mT);mT=setTimeout(()=>{mOv=null;paintMood()},ms)}paintMood()}
 function owlTap(){
  hoot();S.hoots++;save();const n=Date.now();taps=taps.filter(t=>n-t<2500);taps.push(n);
- if(S.hoots==7){owl.classList.add('gold');say('🌟 feathers turning gold... you earned it');mood('love',4000);return}
+ if(S.hoots==7){owl.classList.add('gold');say('🌟 feathers turning gold... you earned it');logPush('✨ GOLD OWL UNLOCKED');mood('love',4000);return}
  if(taps.length>=9){taps=[];mood('grumpy',3500);say('okay. that is ENOUGH hooting 😒');return}
  if(taps.length>=6){mood('dizzy',2500);say('too many hoots… 🌀');return}
+ if(S.hoots==4){say('something feels… golden… 3 more hoots ✨');mood('curious',1800);return}
  const p=witching()?OL.concat(WL):OL;say(p[Math.random()*p.length|0]);
  Math.random()<.3?mood('surprised',800):mood('happy',1800)}
 owl.onclick=owlTap;
 owl.onpointerenter=()=>mood('curious',1400);
-addEventListener('pointermove',e=>{const r=owl.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height*.55),d=Math.hypot(dx,dy)||1,k=Math.min(2.2,d/60);owl.style.setProperty('--px',(dx/d*k).toFixed(2)+'px');owl.style.setProperty('--py',(dy/d*k).toFixed(2)+'px')},{passive:true});
+addEventListener('pointermove',e=>{if(!S.ey)return;const r=owl.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height*.55),d=Math.hypot(dx,dy)||1,k=Math.min(2.2,d/60);owl.style.setProperty('--px',(dx/d*k).toFixed(2)+'px');owl.style.setProperty('--py',(dy/d*k).toFixed(2)+'px')},{passive:true});
 setInterval(()=>{if(Math.random()<.4){say((witching()?WL:OL)[Math.random()*3|0]);mood('curious',1500)}},24000);
 
 /* ---- clock / AFK state ---- */
@@ -230,11 +238,11 @@ msg.onpaste=e=>{e.preventDefault();document.execCommand('insertText',false,(e.cl
 /* ---- windows ---- */
 const wins={};let z=10;
 function drag(w,h){let dx,dy,on=0;h.onpointerdown=e=>{if(e.target.closest('button'))return;on=1;dx=e.clientX-w.offsetLeft;dy=e.clientY-w.offsetTop;h.setPointerCapture(e.pointerId)};h.onpointermove=e=>{if(on){w.style.left=Math.max(0,e.clientX-dx)+'px';w.style.top=Math.max(48,e.clientY-dy)+'px'}};h.onpointerup=()=>on=0}
-function win(id,title,html,init){
+function win(id,title,html,init,o){
  if(wins[id]){restore(id);return}
  const n=Object.keys(wins).length,w=document.createElement('div');w.className='win';
- w.style.left=Math.max(8,(innerWidth-Math.min(innerWidth*.92,380))/2+n*14)+'px';w.style.top=(70+n*22)+'px';w.style.zIndex=++z;
- w.innerHTML=`<div class="wh"><b>${title}</b><span class="wbtns"><button class="b" data-m title="minimise" style="padding:.1rem .5rem">–</button><button class="b" data-x title="close" style="padding:.1rem .5rem">✕</button></span></div><div class="wb">${html}</div>`;
+ w.style.left=Math.max(8,(innerWidth-Math.min(innerWidth*.92,380))/2+n*14)+'px';w.style.top=(70+n*22)+'px';w.style.zIndex=++z;if(o&&o.big){w.classList.add('big');w.style.left=Math.max(8,(innerWidth-Math.min(innerWidth*.94,780))/2+n*14)+'px';w.style.top=(56+n*22)+'px'}
+ w.innerHTML=`<div class="wh"><b>${title}</b><span class="wbtns"><button class="b" data-m title="minimise" style="padding:.1rem .5rem">–</button><button class="b" data-x title="close" style="padding:.1rem .5rem">✕</button></span></div><div class="wb${o&&o.big?' fr':''}">${html}</div>`;
  $('#wins').appendChild(w);wins[id]={style:w.style,el:w,title,min:0};
  w.querySelector('[data-x]').onclick=()=>{w.remove();delete wins[id];tasks()};w.querySelector('[data-m]').onclick=()=>minim(id);
  w.onpointerdown=()=>w.style.zIndex=++z;drag(w,w.querySelector('.wh'));init&&init(w.querySelector('.wb'));tasks()}
@@ -259,6 +267,7 @@ function settings(){
  <label>enabled<input id="s_w" type="checkbox"></label><label>hour (-1 = middle of night)<input id="s_wh" type="number" min="-1" max="23" style="width:4.5rem"></label>
  <h4>power</h4>
  <label>keep screen awake<input id="s_awake" type="checkbox"></label>
+ <label>owl eyes follow my cursor<input id="s_eyes" type="checkbox"></label><button class="b" id="s_oreset">reset owl (hoots &amp; gold)</button>
  <label>screensaver when idle<input id="s_saver" type="checkbox"></label>
  <h4>data</h4><button class="b" id="s_reset">reset everything</button>`,b=>{
   const g=i=>b.querySelector('#'+i);
@@ -271,6 +280,7 @@ function settings(){
   bind('s_mode','mode');bind('s_sr','sr');bind('s_ss','ss');bind('s_twi','twi');bind('s_acc','acc');bind('s_w','witch');bind('s_saver','saver');
   g('s_wh').oninput=e=>{const v=parseInt(e.target.value);S.wh=isNaN(v)?-1:Math.min(23,Math.max(-1,v));save();theme()};
   g('s_accr').onclick=()=>{S.acc='';save();theme()};
+  g('s_eyes').checked=!!S.ey;g('s_eyes').onchange=e=>{S.ey=e.target.checked;save();if(!S.ey){owl.style.setProperty('--px','0px');owl.style.setProperty('--py','0px')}};g('s_oreset').onclick=()=>{S.hoots=0;owl.classList.remove('gold');save();say('back to plain feathers 🦉')};
   g('s_awake').onchange=async e=>{if(!await awake(e.target.checked))e.target.checked=false};
   g('s_reset').onclick=()=>{try{Object.keys(localStorage).filter(k=>k.startsWith('on:')).forEach(k=>localStorage.removeItem(k))}catch(e){}location.reload()}})}
 function add(){
@@ -283,11 +293,11 @@ function add(){
 const APPS=[['mail','✉️','contact',()=>mail()],['haze','🎧','haze',()=>haze()],['notes','📝','notes',()=>notes()],['paint','🎨','paint',()=>paint()],['synth','🎹','synth',()=>synth()],['term','▸','terminal',()=>term()],['wx','🌤️','weather',()=>weather()],['stk','📌','sticky',()=>sticky()]];
 const ICW=68,ICH=72;
 const defPos=i=>{const r=Math.max(1,Math.floor((innerHeight-150)/ICH));return[10+Math.floor(i/r)*ICW,60+i%r*ICH]};
-function hide(d){if(d.li!=null){if(!confirm('remove shortcut "'+d.n+'"?'))return;S.links.splice(d.li,1);toast('removed '+d.n)}else{S.hid.push(d.id);toast(d.n+' hidden · bring it back in ⚙ settings')}save();icons()}
+function hide(d){if(d.li!=null){if(!confirm('remove shortcut "'+d.n+'"?'))return;S.links.splice(d.li,1);toast('removed '+d.n)}else if(d.fi!=null){if(!confirm('remove "'+d.n+'" from this page?'))return;S.fl.splice(d.fi,1);delete MEM[d.id];IDB.del('html:'+d.id).catch(()=>{});const w=wins['f_'+d.id];if(w)w.el.querySelector('[data-x]').click();toast('removed '+d.n)}else{S.hid.push(d.id);toast(d.n+' hidden · bring it back in ⚙ settings')}save();icons()}
 function icons(){
  const el=$('#icons');el.innerHTML='';
  const L=APPS.filter(a=>!S.hid.includes(a[0])).map(a=>({id:a[0],e:a[1],n:a[2],f:a[3]}))
-  .concat(S.links.map((l,i)=>({id:l.id,e:l.e,n:l.n,li:i,f:()=>open(l.u,'_blank','noopener')})),[{id:'add',e:'＋',n:'add',f:add,keep:1}]);
+  .concat(S.links.map((l,i)=>({id:l.id,e:l.e,n:l.n,li:i,f:()=>open(l.u,'_blank','noopener')})),S.fl.map((f,i)=>({id:f.id,e:'📄',n:f.n.slice(0,12),fi:i,f:()=>openFile(f.id)})),[{id:'add',e:'＋',n:'add',f:add,keep:1}]);
  L.forEach((d,i)=>{const b=document.createElement('button');b.className='ic';b.innerHTML=`<b>${d.e}</b>${d.n}`;
   const p=S.pos[d.id]||defPos(i);b.style.left=Math.max(0,Math.min(p[0],innerWidth-ICW))+'px';b.style.top=Math.max(44,Math.min(p[1],innerHeight-150))+'px';
   let sx=null,sy,ox,oy,mv=0,lp;
@@ -308,6 +318,14 @@ addEventListener('resize',rs);rs();
 /* ---- haze ambience (pad + rain + synth drift + your own file, with studio) ---- */
 const EQ=ST.get('eq',{lo:0,mi:0,hi:0,ew:0,rw:0,m:.55});
 const CH={lofi:[[130.8,155.6,196,233.1],[146.8,174.6,220,261.6],[110,130.8,164.8,196],[98,123.5,146.8,196]],synth:[[110,164.8,220,277.2],[123.5,185,246.9,311.1],[130.8,196,261.6,329.6]],rain:[[110,130.8,164.8],[98,123.5,146.8]]};
+let TRACK=null;
+const IDB={db(){return this._p||(this._p=new Promise((ok,no)=>{const r=indexedDB.open('owl',1);r.onupgradeneeded=()=>r.result.createObjectStore('f');r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)}))},
+ async put(k,v){const d=await this.db();return new Promise((ok,no)=>{const t=d.transaction('f','readwrite');t.objectStore('f').put(v,k);t.oncomplete=ok;t.onerror=()=>no(t.error)})},
+ async del(k){const d=await this.db();return new Promise((ok,no)=>{const t=d.transaction('f','readwrite');t.objectStore('f').delete(k);t.oncomplete=ok;t.onerror=()=>no(t.error)})},
+ async get(k){const d=await this.db();return new Promise((ok,no)=>{const q=d.transaction('f').objectStore('f').get(k);q.onsuccess=()=>ok(q.result);q.onerror=()=>no(q.error)})}};
+IDB.get('track').then(f=>{if(f){TRACK=f;if(A.au&&!A.au.src)A.au.src=URL.createObjectURL(f)}else if(ST.get('hm','lofi')=='custom')ST.set('hm','lofi')}).catch(()=>{});
+const badFile=()=>{toast("couldn't play that file — try mp3 / m4a / wav");A.on=false;$('#play').textContent='▶ haze'};
+function loadTrack(f){if(!f)return;aInit();TRACK=f;A.au.src=URL.createObjectURL(f);A.mode='custom';ST.set('hm','custom');ST.set('tn',f.name);IDB.put('track',f).catch(()=>toast('this track will not be remembered after a reload'));const hm=$('#hm'),hn=$('#hn');if(hm)hm.value='custom';if(hn)hn.textContent=f.name;amb(true);logPush('🎵 now playing: '+f.name)}
 function aInit(){if(A.c)return;const c=A.c=new AudioContext(),mk=(t,f,g)=>{const n=c.createBiquadFilter();n.type=t;n.frequency.value=f;n.gain.value=g;return n},gn=v=>{const g=c.createGain();g.gain.value=v;return g};
  A.m=gn(EQ.m);A.lo=mk('lowshelf',200,EQ.lo);A.mi=mk('peaking',1000,EQ.mi);A.hi=mk('highshelf',4000,EQ.hi);
  A.dl=c.createDelay(2);A.dl.delayTime.value=.38;A.fb=gn(.35);A.ew=gn(EQ.ew);A.dl.connect(A.fb).connect(A.dl);A.dl.connect(A.ew);
@@ -319,7 +337,7 @@ function aInit(){if(A.c)return;const c=A.c=new AudioContext(),mk=(t,f,g)=>{const
  A.os=[0,1,2,3].map(()=>{const o=c.createOscillator();o.type='triangle';o.connect(lp);o.start();return o});
  const b=c.createBuffer(1,c.sampleRate*2,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
  const ns=c.createBufferSource();ns.buffer=b;ns.loop=true;A.nf=mk('bandpass',3200,0);A.ng=gn(.0001);ns.connect(A.nf).connect(A.ng).connect(A.m);ns.start();
- A.au=new Audio();A.au.loop=true;c.createMediaElementSource(A.au).connect(A.m);A.mode=ST.get('hm','lofi')}
+ A.au=new Audio();A.au.loop=true;A.au.onerror=badFile;c.createMediaElementSource(A.au).connect(A.m);if(TRACK)A.au.src=URL.createObjectURL(TRACK);A.mode=ST.get('hm','lofi');if(A.mode=='custom'&&!TRACK)A.mode='lofi'}
 function chord(){const c=A.c,s=CH[A.mode]||CH.lofi,ch=s[Math.random()*s.length|0],t=c.currentTime,r=A.mode=='rain';
  A.os.forEach((o,i)=>o.frequency.setTargetAtTime(ch[i%ch.length]*(i>1?2:1),t,.6));
  A.pg.gain.setTargetAtTime(r?.05:.09,t,1.2);A.ng.gain.setTargetAtTime(r?.05:.015,t,.8);A.nf.frequency.setTargetAtTime(r?1800:3200,t,.8);A.lp.frequency.setTargetAtTime(A.mode=='synth'?1400:800,t,.8)}
@@ -327,19 +345,19 @@ function amb(on){aInit();A.c.resume();clearInterval(A.t);const own=A.mode=='cust
  if(on&&own&&!A.au.src){toast('upload a track first');on=false}
  A.on=on;
  if(on&&!own){chord();A.t=setInterval(chord,7000)}else{A.pg.gain.setTargetAtTime(.0001,t,.4);A.ng.gain.setTargetAtTime(.0001,t,.3)}
- if(on&&own)A.au.play();else A.au.pause();
+ if(on&&own){const q=A.au.play();q&&q.catch&&q.catch(badFile)}else A.au.pause();
  $('#play').textContent=on?'⏸ haze':'▶ haze'}
 $('#play').onclick=()=>amb(!A.on);
 (function pl(){if(A.an){A.an.getByteFrequencyData(A.d);document.documentElement.style.setProperty('--amp',(A.d.reduce((a,b)=>a+b,0)/A.d.length/255).toFixed(3))}requestAnimationFrame(pl)})();
 function haze(){
  const SL=[['bass','lo',-12,12,1],['mid','mi',-12,12,1],['treble','hi',-12,12,1],['echo','ew',0,.8,.01],['reverb','rw',0,1,.01],['volume','m',0,1,.01]];
  win('haze','🎧 haze',`<label>mode<select id="hm"><option value="lofi">lofi pad</option><option value="rain">rain window</option><option value="synth">synth drift</option><option value="custom">my own file</option></select></label>
- <div style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="b" id="hp">play / pause</button><label class="b" style="cursor:pointer">upload mp3 / mp4<input id="hf" type="file" accept="audio/*,video/*" hidden></label></div><span id="hn" style="color:var(--mu)">no file chosen</span>
+ <div style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="b" id="hp">play / pause</button><label class="b" style="cursor:pointer">upload mp3 / mp4<input id="hf" type="file" accept="audio/*,video/*" hidden></label></div><span id="hn" style="color:var(--mu)">${ST.get('tn','no file chosen')}</span>
  <h4>studio</h4>${SL.map(([n,k,a,b,st])=>`<label>${n}<input type="range" data-k="${k}" min="${a}" max="${b}" step="${st}" value="${EQ[k]}"></label>`).join('')}<button class="b" id="hr">reset studio</button>`,b=>{
  const m=b.querySelector('#hm');m.value=ST.get('hm','lofi');
  m.onchange=()=>{aInit();A.mode=m.value;ST.set('hm',m.value);amb(!!A.on)};
  b.querySelector('#hp').onclick=()=>amb(!A.on);
- b.querySelector('#hf').onchange=e=>{const f=e.target.files[0];if(!f)return;aInit();A.au.src=URL.createObjectURL(f);b.querySelector('#hn').textContent=f.name;m.value=A.mode='custom';ST.set('hm','custom');amb(true)};
+ b.querySelector('#hf').onchange=e=>loadTrack(e.target.files[0]);
  b.querySelectorAll('[data-k]').forEach(i=>i.oninput=()=>{aInit();const k=i.dataset.k;EQ[k]=+i.value;A[k].gain.value=EQ[k];ST.set('eq',EQ)});
  b.querySelector('#hr').onclick=()=>{Object.assign(EQ,{lo:0,mi:0,hi:0,ew:0,rw:0,m:.55});ST.set('eq',EQ);if(A.c)['lo','mi','hi','ew','rw','m'].forEach(k=>A[k].gain.value=EQ[k]);b.querySelectorAll('[data-k]').forEach(i=>i.value=EQ[i.dataset.k])}})}
 
@@ -364,17 +382,57 @@ function synth(){win('synth','🎹 synth',`<label>wave<select id="sw"><option>tr
 function term(){win('term','▸ terminal',`<div id="to" style="white-space:pre-wrap;min-height:8rem;max-height:38dvh;overflow:auto;color:var(--a3)">owl shell. type help</div><div style="display:flex;gap:.4rem"><span style="color:var(--a)">guest@owl ~ %</span><input id="ti" style="flex:1;max-width:none;background:none;border:0;outline:0" autocomplete="off" autocapitalize="off"></div>`,b=>{
  const o=b.querySelector('#to'),i=b.querySelector('#ti'),out=t=>{o.textContent+='\n'+t;o.scrollTop=1e9};
  const AP={notes,settings,haze,paint,synth,weather,sticky,contact:mail,add};
- const C={help:()=>'help · about · contact · date · hoot · clear · matrix · catch · mood <name> · theme <auto|day|sunset|night> · open <notes|settings|haze|paint|synth|weather|sticky|contact|add>',
+ const C={help:()=>'help · about · contact · date · hoot · clear · matrix · catch · mood <name> · status · copy · upload (html) · music · theme <auto|day|sunset|night> · open <notes|settings|haze|paint|synth|weather|sticky|contact|add>',
   about:()=>'owl nocturne — an AFK orb wearing a toy web OS, honest about what a browser tab can do.',
   contact:()=>EMAIL,date:()=>new Date().toString(),hoot:()=>{hoot();return'hoot'},clear:()=>{o.textContent='';return''},
   matrix:()=>{matrix();return'wake up, owl…'},catch:()=>{openPhotonCatch();return'stray photons incoming…'},
+  status:()=>statusLine(),copy:()=>{copyText(statusLine());return'copied → '+statusLine()},upload:()=>{$('#hfi').click();return'pick an .html file…'},music:()=>{$('#qf').click();return'pick a track…'},
   mood:a=>MOODS.includes(a)?(mood(a,6000),'the owl feels '+a):'moods: '+MOODS.join(' · '),
   theme:a=>{if(['auto','day','sunset','night'].includes(a)){S.mode=a;save();theme()}return'mode: '+S.mode},
   open:a=>AP[a]?(AP[a](),'opened '+a):'unknown app: '+a};
  i.onkeydown=e=>{if(e.key!='Enter')return;const[c,...r]=i.value.trim().split(/\s+/);out('% '+i.value);i.value='';if(c){const f=C[c.toLowerCase()];out(f?f(r.join(' ')):'command not found: '+c)}}})}
 
 /* ---- easter eggs: konami, "matrix", console ---- */
-function matrix(){mood('surprised',1500);MX=Date.now()+8000;DR=Array.from({length:W/16|0},()=>Math.random()*H/16|0)}
+function matrix(){mood('surprised',1500);triggerMatrixRain()}
+function triggerMatrixRain(){
+  const mCanvas = document.createElement('canvas');
+  mCanvas.style.cssText = 'position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:0;transition:opacity .4s;';
+  document.body.appendChild(mCanvas);
+  mCanvas.width = window.innerWidth;
+  mCanvas.height = window.innerHeight;
+  const mctx = mCanvas.getContext('2d');
+  const chars = 'アイウエオカキクケコサシスセソ0123456789';
+  const fontSize = 16;
+  const cols = Math.floor(mCanvas.width / fontSize);
+  const drops = Array(cols).fill(1);
+  requestAnimationFrame(() => mCanvas.style.opacity = '1');
+  let frame = 0;
+  const maxFrames = 220;
+  function draw(){
+    mctx.fillStyle = 'rgba(7,3,15,0.15)';
+    mctx.fillRect(0, 0, mCanvas.width, mCanvas.height);
+    mctx.fillStyle = '#7cffb0';
+    mctx.font = fontSize + 'px monospace';
+    drops.forEach((y, i) => {
+      const text = chars[Math.floor(Math.random() * chars.length)];
+      mctx.fillText(text, i * fontSize, y * fontSize);
+      if (y * fontSize > mCanvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    });
+    frame++;
+    if (frame < maxFrames){
+      requestAnimationFrame(draw);
+    } else {
+      mCanvas.style.opacity = '0';
+      setTimeout(() => mCanvas.remove(), 500);
+    }
+  }
+  draw();
+  logPush('🟢 wake up, neo...');
+  say('there is no orb 🟢');
+}
+
+
 function rain(){cx.font='14px monospace';cx.fillStyle='#4be08a';DR.forEach((y,i)=>{for(let k=0;k<10;k++){cx.globalAlpha=1-k/10;cx.fillText(String.fromCharCode(0x30A0+Math.random()*96|0),i*16,(y-k)*16)}DR[i]=y*16>H+160&&Math.random()>.975?0:y+1});cx.globalAlpha=1}
 const KON=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0,mb='';
 addEventListener('keydown',e=>{
@@ -537,7 +595,7 @@ let sfxCtx;
 /* orb: click for a new chord, 8 fast clicks = overload, drag it and it springs back */
 (function(){const w=$('.orbwrap'),core=$('.core');let ct=[],st=null;
  core.addEventListener('click',()=>{if(A.on&&A.mode!='custom'&&A.c)chord();const n=Date.now();ct=ct.filter(t=>n-t<3000);ct.push(n);
-  if(ct.length>=8){ct=[];core.classList.add('unstable');say('OVERLOAD ⚡');mood('dizzy',1800);setTimeout(()=>core.classList.remove('unstable'),1600)}});
+  if(ct.length>=8){ct=[];core.classList.add('unstable');say('OVERLOAD ⚡');logPush('⚠ orb overload detected');mood('dizzy',1800);setTimeout(()=>core.classList.remove('unstable'),1600)}});
  w.addEventListener('pointerdown',e=>{if(e.target.closest('#owl,#bub'))return;st={x:e.clientX,y:e.clientY,mv:0,id:e.pointerId}});
  w.addEventListener('pointermove',e=>{if(!st)return;const dx=e.clientX-st.x,dy=e.clientY-st.y;if(!st.mv){if(Math.hypot(dx,dy)<6)return;st.mv=1;w.setPointerCapture(st.id);w.style.transition='none';mood('surprised',700)}w.style.transform='translate('+dx+'px,'+dy+'px)'});
  const up=()=>{if(st&&st.mv){w.style.transition='transform .6s cubic-bezier(.34,1.56,.64,1)';w.style.transform='';mood('happy',1500);setTimeout(()=>w.style.transition='',650)}st=null};
@@ -582,6 +640,53 @@ $('#gear').onclick=settings;
  setTimeout(()=>$('#bb i').style.width='100%',120);
  const go=()=>{clearInterval(t);b.classList.add('out');setTimeout(()=>b.remove(),950)};
  setTimeout(go,2400);b.onclick=go})();
+/* ---- import your own .html files (kept in the browser, open as sandboxed apps) ---- */
+const MEM={};
+const readText=f=>f.text?f.text():new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);x.readAsText(f)});
+async function importHtml(f){
+ if(!/\.html?$/i.test(f.name)){toast('only .html files can be imported');return}
+ if(f.size>8e6){toast('that file is over 8 MB');return}
+ const text=await readText(f),id='f'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+ MEM[id]=text;try{await IDB.put('html:'+id,text)}catch(e){toast('imported, but it will not be remembered after a reload')}
+ S.fl.push({id,n:f.name.replace(/\.html?$/i,''),t:0});save();icons();logPush('📂 imported '+f.name);openFile(id)}
+async function openFile(id){
+ const it=S.fl.find(x=>x.id==id);if(!it)return;
+ let text=MEM[id];if(text==null){try{text=await IDB.get('html:'+id)}catch(e){}}
+ if(text==null){toast('could not load that file — import it again');return}
+ const sb=t=>'allow-scripts allow-forms allow-modals allow-popups allow-downloads'+(t?' allow-same-origin':'');
+ win('f_'+id,'📄 '+it.n.slice(0,14),`<div class="fbar"><span>sandboxed</span><label class="b"><input type="checkbox" class="ftr"${it.t?' checked':''}> allow storage (trusted)</label><button class="b frl">↻ reload</button></div><iframe title="${it.n.replace(/"/g,'')}"></iframe>`,b=>{
+  const fr=b.querySelector('iframe'),tr=b.querySelector('.ftr'),go=()=>{fr.setAttribute('sandbox',sb(it.t));fr.srcdoc=text};
+  tr.onchange=()=>{if(tr.checked&&!confirm('Let this file use browser storage?\n\nIt will also be able to read this page\'s data. Only do this for files you made or trust.')){tr.checked=false;return}it.t=tr.checked?1:0;save();go()};
+  b.querySelector('.frl').onclick=go;go()},{big:1})}
+$('#hfi').onchange=async e=>{for(const f of e.target.files)await importHtml(f);e.target.value=''};
+addEventListener('dragover',e=>e.preventDefault());
+addEventListener('drop',e=>{e.preventDefault();[...(e.dataTransfer?.files||[])].forEach(f=>/^(audio|video)\//.test(f.type)?loadTrack(f):importHtml(f))});
+
+$('#qf').onchange=e=>{loadTrack(e.target.files[0]);e.target.value=''};
+/* ---- terminal log ticker + discord/slack-ready status line ---- */
+const LOG_LINES = [
+  "proximity sensors: nominal",
+  "signal: idle",
+  "cache warmed, nobody home",
+  "purple photons: flowing",
+  "last input: {ago}",
+  "owl on watch duty 🦉",
+  "background hum: engaged",
+  "feathers fluffed, mode: chill",
+  "orb integrity: 100%",
+  "listening to the void (softly)",
+];
+const WITCH_LOG_LINES = [
+  "clock strikes zero",
+  "static on the line",
+  "who else is awake right now",
+];
+function logPush(t){const l=$('#log'),d=document.createElement('div');d.innerHTML='<span class="tg">['+new Date().toLocaleTimeString([],{hour12:false})+']</span> '+String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;');l.appendChild(d);while(l.children.length>4)l.removeChild(l.firstChild)}
+let li=0;function logTick(){const m=Math.floor((Date.now()-last)/6e4),p=witching()?LOG_LINES.concat(WITCH_LOG_LINES):LOG_LINES;logPush(p[li++%p.length].replace('{ago}',m<=0?'just now':m+'m ago'))}
+logTick();setInterval(logTick,4200);
+const statusLine=()=>'🟣 AFK for '+$('#timer').textContent+' — '+$('#msg').textContent.trim();
+function copyText(t){return(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).catch(()=>{const x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}x.remove();return ok?0:Promise.reject()})}
+$('#cp').onclick=()=>copyText(statusLine()).then(()=>{$('#cp').textContent='copied ✓';setTimeout(()=>$('#cp').textContent='📋 status',1400)},()=>toast("couldn't copy — select the message instead"));
 stk();
 icons();theme();tick();if(S.aw)awake(true,1);
 </script>
