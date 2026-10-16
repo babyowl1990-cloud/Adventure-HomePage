@@ -123,6 +123,10 @@ label.b{display:inline-flex;align-items:center;flex-direction:row;gap:.35rem}
 .wb.fr{padding:0;flex:1;min-height:0;gap:0}
 .fbar{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;padding:.4rem .6rem;border-bottom:1px solid var(--edge);font-size:.66rem;color:var(--mu)}
 .wb.fr iframe{flex:1;width:100%;min-height:0;border:0;background:#fff}
+#sb{flex:1;min-width:0;max-width:24rem;margin:0 .8rem;background:var(--panel);border:1px solid var(--edge);color:var(--tx);border-radius:99px;padding:.4rem .95rem;font:inherit;font-size:.74rem;outline:0}#sb:focus{border-color:var(--a)}
+@media(max-width:560px){header{flex-wrap:wrap;row-gap:.5rem}#sb{order:3;flex-basis:100%;max-width:none;margin:0}.icons{top:6.4rem}}
+#brb{display:flex;gap:.35rem;align-items:center;justify-content:center;margin-top:.55rem;font-size:.68rem;color:var(--mu);flex-wrap:wrap}#brb .b{padding:.22rem .6rem;font-size:.66rem}
+#brb.on [data-m]{display:none}#brb:not(.on) #brbx{display:none}#brb.on #brbL{color:var(--a);font-variant-numeric:tabular-nums}body.idle #brb{pointer-events:none}
 /* minimise */
 .wbtns{display:flex;gap:.3rem}.b.min{opacity:.55;font-style:italic}
 @media(prefers-reduced-motion:reduce){#owl .dz circle,#owl .zz,#owl .hr,.core.unstable{animation:none}}
@@ -133,6 +137,7 @@ label.b{display:inline-flex;align-items:center;flex-direction:row;gap:.35rem}
 <div id="boot"><div id="bt">OWL NOCTURNE<span class="cur">&nbsp;</span></div><div id="bs">booting dreamstate…</div><div id="bb"><i></i></div></div>
 <header>
   <div class="pill" id="pill"><i></i><span id="st">AFK</span></div>
+  <input id="sb" list="cmds" placeholder="search, open an app, or !yt cats…" autocomplete="off" spellcheck="false" aria-label="search or launch"><datalist id="cmds"></datalist>
   <div><span id="wxh" style="cursor:pointer;margin-right:.6rem"></span><span id="modeLbl"></span> · <span id="clk">--:--</span></div>
 </header>
 <nav class="icons" id="icons"></nav>
@@ -160,7 +165,7 @@ label.b{display:inline-flex;align-items:center;flex-direction:row;gap:.35rem}
   </div>
   <h1>AFK</h1><div id="timer">00:00:00</div>
   <div id="msg" contenteditable="true" spellcheck="false" role="textbox" aria-label="status message" title="click to edit your status">roosting for a bit — hoot if urgent</div>
-  <div id="worlds"></div><div id="log"></div><div id="hint">click the message to edit it · 📂 imports your own .html files · click the orb for a new chord</div>
+  <div id="brb"><span id="brbL">back in</span><button class="b" data-m="5">5m</button><button class="b" data-m="15">15m</button><button class="b" data-m="30">30m</button><button class="b" data-m="60">1h</button><button class="b" id="brbx">✕ cancel</button></div><div id="worlds"></div><div id="log"></div><div id="hint">press / to search · click the message to edit it · 📂 imports your own .html files · click the orb for a new chord</div>
 </main>
 <div id="wins"></div><div id="toast"></div>
 <footer><button class="b" id="start">🦉 OWL</button><div id="tasks"></div><button class="b" id="gear" title="settings">⚙</button><button class="b" id="play">▶ haze</button><label class="b" id="upl" title="import an .html file — it becomes an app on your start page" style="cursor:pointer">📂 html<input id="hfi" type="file" accept=".html,.htm,text/html" multiple hidden></label><button class="b" id="cp" title="copy a Discord / Slack-ready AFK line">📋 status</button><input id="qf" type="file" accept="audio/*,video/*" hidden><span id="wk" style="font-size:.65rem;color:var(--mu)"></span></footer>
@@ -168,8 +173,8 @@ label.b{display:inline-flex;align-items:center;flex-direction:row;gap:.35rem}
 <script>
 const $=s=>document.querySelector(s);
 const ST={get(k,d){try{const v=localStorage.getItem('on:'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('on:'+k,JSON.stringify(v))}catch(e){}}};
-const K=['mail','mode','sr','ss','acc','witch','wh','saver','links','hoots','msg','hid','pos','stk','wxp','unit','aw','twi','ey','fl'];
-const D={mail:'',mode:'auto',sr:'06:30',ss:'18:30',acc:'',witch:true,wh:-1,saver:true,links:[],hoots:0,msg:null,hid:[],pos:{},stk:[],wxp:null,unit:'C',aw:false,twi:60,ey:false,fl:[]};
+const K=['mail','mode','sr','ss','acc','witch','wh','saver','links','hoots','msg','hid','pos','stk','wxp','unit','aw','twi','ey','fl','brb','eng'];
+const D={mail:'',mode:'auto',sr:'06:30',ss:'18:30',acc:'',witch:true,wh:-1,saver:true,links:[],hoots:0,msg:null,hid:[],pos:{},stk:[],wxp:null,unit:'C',aw:false,twi:60,ey:false,fl:[],brb:0,eng:'ddg'};
 const S={};K.forEach(k=>S[k]=ST.get(k,D[k]));
 const save=()=>K.forEach(k=>ST.set(k,S[k]));
 S.links.forEach(l=>{l.id=l.id||'l'+Math.random().toString(36).slice(2,8)});
@@ -265,6 +270,8 @@ function settings(){
  <h4>desktop apps</h4><div id="s_apps"></div><button class="b" id="s_lay">reset icon layout</button>
  <h4>witching hour</h4>
  <label>enabled<input id="s_w" type="checkbox"></label><label>hour (-1 = middle of night)<input id="s_wh" type="number" min="-1" max="23" style="width:4.5rem"></label>
+ <h4>search</h4><label>default engine<select id="s_eng"><option value="ddg">DuckDuckGo</option><option value="google">Google</option><option value="brave">Brave</option><option value="bing">Bing</option><option value="startpage">Startpage</option></select></label>
+ <h4>backup</h4><div style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="b" id="s_bk">export backup</button><label class="b" style="cursor:pointer">import backup<input id="s_bi" type="file" accept=".json,application/json" hidden></label></div><div style="color:var(--mu);font-size:.66rem">settings, notes, shortcuts and imported .html files · music tracks are not included</div>
  <h4>power</h4>
  <label>keep screen awake<input id="s_awake" type="checkbox"></label>
  <label>owl eyes follow my cursor<input id="s_eyes" type="checkbox"></label><button class="b" id="s_oreset">reset owl (hoots &amp; gold)</button>
@@ -281,6 +288,7 @@ function settings(){
   g('s_wh').oninput=e=>{const v=parseInt(e.target.value);S.wh=isNaN(v)?-1:Math.min(23,Math.max(-1,v));save();theme()};
   g('s_accr').onclick=()=>{S.acc='';save();theme()};
   g('s_eyes').checked=!!S.ey;g('s_eyes').onchange=e=>{S.ey=e.target.checked;save();if(!S.ey){owl.style.setProperty('--px','0px');owl.style.setProperty('--py','0px')}};g('s_oreset').onclick=()=>{S.hoots=0;owl.classList.remove('gold');save();say('back to plain feathers 🦉')};
+  g('s_eng').value=S.eng;g('s_eng').onchange=e=>{S.eng=e.target.value;save()};g('s_bk').onclick=exportAll;g('s_bi').onchange=e=>{importAll(e.target.files[0]);e.target.value=''};
   g('s_awake').onchange=async e=>{if(!await awake(e.target.checked))e.target.checked=false};
   g('s_reset').onclick=()=>{try{Object.keys(localStorage).filter(k=>k.startsWith('on:')).forEach(k=>localStorage.removeItem(k))}catch(e){}location.reload()}})}
 function add(){
@@ -294,7 +302,7 @@ const APPS=[['mail','✉️','contact',()=>mail()],['haze','🎧','haze',()=>haz
 const ICW=68,ICH=72;
 const defPos=i=>{const r=Math.max(1,Math.floor((innerHeight-150)/ICH));return[10+Math.floor(i/r)*ICW,60+i%r*ICH]};
 function hide(d){if(d.li!=null){if(!confirm('remove shortcut "'+d.n+'"?'))return;S.links.splice(d.li,1);toast('removed '+d.n)}else if(d.fi!=null){if(!confirm('remove "'+d.n+'" from this page?'))return;S.fl.splice(d.fi,1);delete MEM[d.id];IDB.del('html:'+d.id).catch(()=>{});const w=wins['f_'+d.id];if(w)w.el.querySelector('[data-x]').click();toast('removed '+d.n)}else{S.hid.push(d.id);toast(d.n+' hidden · bring it back in ⚙ settings')}save();icons()}
-function icons(){
+function icons(){cmdList();
  const el=$('#icons');el.innerHTML='';
  const L=APPS.filter(a=>!S.hid.includes(a[0])).map(a=>({id:a[0],e:a[1],n:a[2],f:a[3]}))
   .concat(S.links.map((l,i)=>({id:l.id,e:l.e,n:l.n,li:i,f:()=>open(l.u,'_blank','noopener')})),S.fl.map((f,i)=>({id:f.id,e:'📄',n:f.n.slice(0,12),fi:i,f:()=>openFile(f.id)})),[{id:'add',e:'＋',n:'add',f:add,keep:1}]);
@@ -382,11 +390,12 @@ function synth(){win('synth','🎹 synth',`<label>wave<select id="sw"><option>tr
 function term(){win('term','▸ terminal',`<div id="to" style="white-space:pre-wrap;min-height:8rem;max-height:38dvh;overflow:auto;color:var(--a3)">owl shell. type help</div><div style="display:flex;gap:.4rem"><span style="color:var(--a)">guest@owl ~ %</span><input id="ti" style="flex:1;max-width:none;background:none;border:0;outline:0" autocomplete="off" autocapitalize="off"></div>`,b=>{
  const o=b.querySelector('#to'),i=b.querySelector('#ti'),out=t=>{o.textContent+='\n'+t;o.scrollTop=1e9};
  const AP={notes,settings,haze,paint,synth,weather,sticky,contact:mail,add};
- const C={help:()=>'help · about · contact · date · hoot · clear · matrix · catch · mood <name> · status · copy · upload (html) · music · theme <auto|day|sunset|night> · open <notes|settings|haze|paint|synth|weather|sticky|contact|add>',
+ const C={help:()=>'help · about · contact · date · hoot · clear · matrix · catch · mood <name> · status · copy · brb <min> · backup · upload (html) · music · theme <auto|day|sunset|night> · open <notes|settings|haze|paint|synth|weather|sticky|contact|add>',
   about:()=>'owl nocturne — an AFK orb wearing a toy web OS, honest about what a browser tab can do.',
   contact:()=>EMAIL,date:()=>new Date().toString(),hoot:()=>{hoot();return'hoot'},clear:()=>{o.textContent='';return''},
   matrix:()=>{matrix();return'wake up, owl…'},catch:()=>{openPhotonCatch();return'stray photons incoming…'},
-  status:()=>statusLine(),copy:()=>{copyText(statusLine());return'copied → '+statusLine()},upload:()=>{$('#hfi').click();return'pick an .html file…'},music:()=>{$('#qf').click();return'pick a track…'},
+  status:()=>statusLine(),backup:()=>{exportAll();return'exporting backup…'},brb:a=>{const m=parseInt(a);if(a=='off'||m===0){brbSet(0);return'timer cleared'}if(!(m>=1&&m<=720))return'usage: brb <minutes> | brb off';brbSet(m);return'back in '+m+' min ☕'},
+  copy:()=>{copyText(statusLine());return'copied → '+statusLine()},upload:()=>{$('#hfi').click();return'pick an .html file…'},music:()=>{$('#qf').click();return'pick a track…'},
   mood:a=>MOODS.includes(a)?(mood(a,6000),'the owl feels '+a):'moods: '+MOODS.join(' · '),
   theme:a=>{if(['auto','day','sunset','night'].includes(a)){S.mode=a;save();theme()}return'mode: '+S.mode},
   open:a=>AP[a]?(AP[a](),'opened '+a):'unknown app: '+a};
@@ -662,6 +671,37 @@ $('#hfi').onchange=async e=>{for(const f of e.target.files)await importHtml(f);e
 addEventListener('dragover',e=>e.preventDefault());
 addEventListener('drop',e=>{e.preventDefault();[...(e.dataTransfer?.files||[])].forEach(f=>/^(audio|video)\//.test(f.type)?loadTrack(f):importHtml(f))});
 
+/* ---- search / launcher bar ---- */
+const ENG={ddg:'https://duckduckgo.com/?q=',google:'https://www.google.com/search?q=',brave:'https://search.brave.com/search?q=',bing:'https://www.bing.com/search?q=',startpage:'https://www.startpage.com/do/search?q='};
+const BANG={g:ENG.google,ddg:ENG.ddg,yt:'https://www.youtube.com/results?search_query=',gh:'https://github.com/search?q=',w:'https://en.wikipedia.org/w/index.php?search=',mdn:'https://developer.mozilla.org/en-US/search?q=',npm:'https://www.npmjs.com/search?q=',maps:'https://www.google.com/maps/search/'};
+let NAV=u=>location.assign(u);
+function cmdList(){const o=[...APPS.map(a=>a[2]),...S.links.map(l=>l.n),...S.fl.map(f=>f.n),...Object.keys(BANG).map(k=>'!'+k+' ')];$('#cmds').innerHTML=o.map(x=>'<option value="'+String(x).replace(/"/g,'&quot;')+'">').join('')}
+function go(q){q=q.trim();if(!q)return;const lo=q.toLowerCase();
+ const ap=APPS.find(a=>a[2].toLowerCase()==lo||a[0]==lo);if(ap){ap[3]();return}
+ const lk=S.links.find(l=>l.n.toLowerCase()==lo);if(lk){NAV(lk.u);return}
+ const fl=S.fl.find(f=>f.n.toLowerCase()==lo);if(fl){openFile(fl.id);return}
+ const m=q.match(/^!(\w+)\s+(.+)/);if(m&&BANG[m[1]]){NAV(BANG[m[1]]+encodeURIComponent(m[2]));return}
+ if(/^https?:\/\/\S+$/i.test(q)||/^[\w-]+(\.[\w-]+)+(\/\S*)?$/.test(q)){NAV(/^https?:/i.test(q)?q:'https://'+q);return}
+ NAV((ENG[S.eng]||ENG.ddg)+encodeURIComponent(q))}
+$('#sb').onkeydown=e=>{if(e.key=='Enter'){const v=e.target.value;e.target.value='';go(v)}else if(e.key=='Escape')e.target.blur()};
+addEventListener('keydown',e=>{if(e.key=='/'&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&!e.target.isContentEditable){e.preventDefault();$('#sb').focus()}});
+/* ---- BRB countdown: "back in 12:04" shows up in your copied status ---- */
+function brbSet(m){S.brb=m?Date.now()+m*6e4:0;save();brbTick();if(m){say('ok — back in '+m+' min ☕');logPush('⏳ BRB timer set: '+m+' min')}}
+function brbTick(){const r=S.brb-Date.now(),on=S.brb&&r>0;$('#brb').classList.toggle('on',!!on);
+ if(on)$('#brbL').textContent='⏳ back in '+dur(r);
+ else{$('#brbL').textContent='back in';if(S.brb){S.brb=0;save();say("⏰ time's up — welcome back!");mood('surprised',1500);try{hoot()}catch(e){}logPush('⏰ BRB timer finished');toast('⏰ BRB timer finished')}}}
+$('#brb').querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>brbSet(+b.dataset.m));$('#brbx').onclick=()=>brbSet(0);setInterval(brbTick,1000);brbTick();
+/* ---- backup / restore everything stored in this browser ---- */
+async function exportAll(){const o={v:1,ls:{},html:{}};
+ for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.startsWith('on:'))o.ls[k]=localStorage.getItem(k)}
+ for(const f of S.fl){let t=MEM[f.id];if(t==null){try{t=await IDB.get('html:'+f.id)}catch(e){}}if(t!=null)o.html[f.id]=t}
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(o)],{type:'application/json'}));a.download='owl-startpage-backup.json';a.click();toast('backup downloaded')}
+async function importAll(f){if(!f)return;let o;try{o=JSON.parse(await readText(f));if(!o||!o.ls)throw 0}catch(e){toast("that isn't a backup file");return}
+ if(!confirm('Replace everything on this page with the backup?'))return;
+ Object.entries(o.ls).forEach(([k,v])=>{if(k.startsWith('on:'))localStorage.setItem(k,v)});
+ for(const [id,t] of Object.entries(o.html||{})){try{await IDB.put('html:'+id,t)}catch(e){}}
+ toast('restored — reloading…');setTimeout(()=>location.reload(),900)}
+
 $('#qf').onchange=e=>{loadTrack(e.target.files[0]);e.target.value=''};
 /* ---- terminal log ticker + discord/slack-ready status line ---- */
 const LOG_LINES = [
@@ -684,7 +724,7 @@ const WITCH_LOG_LINES = [
 function logPush(t){const l=$('#log'),d=document.createElement('div');d.innerHTML='<span class="tg">['+new Date().toLocaleTimeString([],{hour12:false})+']</span> '+String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;');l.appendChild(d);while(l.children.length>4)l.removeChild(l.firstChild)}
 let li=0;function logTick(){const m=Math.floor((Date.now()-last)/6e4),p=witching()?LOG_LINES.concat(WITCH_LOG_LINES):LOG_LINES;logPush(p[li++%p.length].replace('{ago}',m<=0?'just now':m+'m ago'))}
 logTick();setInterval(logTick,4200);
-const statusLine=()=>'🟣 AFK for '+$('#timer').textContent+' — '+$('#msg').textContent.trim();
+const statusLine=()=>{const r=S.brb-Date.now();return '🟣 AFK for '+$('#timer').textContent+' — '+$('#msg').textContent.trim()+(S.brb&&r>0?' (back in ~'+Math.ceil(r/6e4)+'m)':'')};
 function copyText(t){return(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).catch(()=>{const x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}x.remove();return ok?0:Promise.reject()})}
 $('#cp').onclick=()=>copyText(statusLine()).then(()=>{$('#cp').textContent='copied ✓';setTimeout(()=>$('#cp').textContent='📋 status',1400)},()=>toast("couldn't copy — select the message instead"));
 stk();
