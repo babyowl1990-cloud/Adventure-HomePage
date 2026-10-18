@@ -11,11 +11,12 @@ html[data-mode=day]{--bg0:#fbf6ff;--bg1:#e4d9ff;--panel:rgba(255,255,255,.65);--
 html[data-mode=sunset]{--bg0:#2a0f08;--bg1:#8a3414;--panel:rgba(60,24,10,.6);--edge:rgba(255,170,100,.32);--a:#ff9a4d;--a2:#ff6b8a;--a3:#ffd27a;--tx:#fff0e0;--mu:#e0a77f}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{display:grid;grid-template-rows:auto 1fr auto;height:100%;overflow:hidden;color:var(--tx);font-family:'JetBrains Mono',ui-monospace,monospace;background:radial-gradient(ellipse 90% 60% at 50% 15%,color-mix(in srgb,var(--a) 22%,transparent),transparent 60%),linear-gradient(180deg,var(--bg0),var(--bg1) 60%,var(--bg0));transition:background 1.5s}
+body{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto;height:100%;overflow:hidden;color:var(--tx);font-family:'JetBrains Mono',ui-monospace,monospace;background:radial-gradient(ellipse 90% 60% at 50% 15%,color-mix(in srgb,var(--a) 22%,transparent),transparent 60%),linear-gradient(180deg,var(--bg0),var(--bg1) 60%,var(--bg0));transition:background 1.5s}
 canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
 .vig{position:fixed;inset:0;z-index:1;pointer-events:none;box-shadow:inset 0 0 16vw rgba(0,0,0,.35)}
 header,footer,main,.icons{position:relative;z-index:3;transition:opacity .8s}
-header{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.1rem;font-size:.75rem;color:var(--mu)}
+header{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,26rem) minmax(0,1fr);column-gap:.8rem;align-items:center;padding:.9rem 1.1rem;font-size:.75rem;color:var(--mu)}
+header>.pill{justify-self:start}header>div:last-of-type{justify-self:end;text-align:right;white-space:nowrap}
 .pill{display:inline-flex;gap:.5rem;align-items:center;padding:.3rem .7rem;border:1px solid var(--edge);border-radius:99px;background:var(--panel);backdrop-filter:blur(8px)}
 .pill i{width:.5rem;height:.5rem;border-radius:50%;background:var(--a);box-shadow:0 0 8px var(--a);animation:bl 1.6s infinite}
 .pill.on i{background:#4be08a;box-shadow:0 0 8px #4be08a;animation:none}
@@ -23,8 +24,8 @@ header{display:flex;justify-content:space-between;align-items:center;padding:.9r
 .icons{position:absolute;left:.7rem;top:3.6rem;display:flex;flex-direction:column;gap:.35rem;z-index:4}
 .ic{width:4.2rem;background:none;border:0;color:var(--tx);font:inherit;font-size:.62rem;display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem .2rem;border-radius:12px;cursor:pointer}
 .ic:hover{background:var(--panel)}.ic b{font-size:1.5rem;font-weight:400}
-main{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 1rem;min-height:0}
-.orbwrap{position:relative;width:min(58vw,290px);aspect-ratio:1;display:grid;place-items:center;transition:transform .8s}
+main{display:flex;flex-direction:column;align-items:center;justify-content:safe center;text-align:center;padding:0 1rem;min-height:0}
+.orbwrap{position:relative;margin-top:2.3rem;width:min(58vw,290px,34vh);aspect-ratio:1;display:grid;place-items:center;transition:transform .8s}
 .ring{position:absolute;border-radius:50%;border:1px solid var(--edge);inset:calc(var(--i)*9%);animation:sp calc(30s + var(--i)*14s) linear infinite alternate}
 @keyframes sp{to{transform:rotate(360deg)}}
 .core{width:38%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--a3),var(--a) 50%,transparent);box-shadow:0 0 calc(50px + var(--amp,0)*90px) calc(6px + var(--amp,0)*16px) color-mix(in srgb,var(--a) 50%,transparent);animation:br 5s ease-in-out infinite}
@@ -123,18 +124,25 @@ label.b{display:inline-flex;align-items:center;flex-direction:row;gap:.35rem}
 .wb.fr{padding:0;flex:1;min-height:0;gap:0}
 .fbar{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;padding:.4rem .6rem;border-bottom:1px solid var(--edge);font-size:.66rem;color:var(--mu)}
 .wb.fr iframe{flex:1;width:100%;min-height:0;border:0;background:#fff}
-#sb{flex:1;min-width:0;max-width:24rem;margin:0 .8rem;background:var(--panel);border:1px solid var(--edge);color:var(--tx);border-radius:99px;padding:.4rem .95rem;font:inherit;font-size:.74rem;outline:0}#sb:focus{border-color:var(--a)}
-@media(max-width:560px){header{flex-wrap:wrap;row-gap:.5rem}#sb{order:3;flex-basis:100%;max-width:none;margin:0}.icons{top:6.4rem}}
+#sb{width:100%;max-width:none;min-width:0;margin:0;justify-self:stretch;text-align:center;transition:transform .3s,border-color .2s;background:var(--panel);border:1px solid var(--edge);color:var(--tx);border-radius:99px;padding:.4rem .95rem;font:inherit;font-size:.74rem;outline:0}#sb:focus{border-color:var(--a)}
+@media(max-width:820px){header{grid-template-columns:minmax(0,1fr) auto;row-gap:.5rem}#sb{grid-column:1/-1;grid-row:2}.icons{top:6.4rem}}
+@media(min-width:1100px){body.news #sb{transform:translateX(-152px)}}
 #brb{display:flex;gap:.35rem;align-items:center;justify-content:center;margin-top:.55rem;font-size:.68rem;color:var(--mu);flex-wrap:wrap}#brb .b{padding:.22rem .6rem;font-size:.66rem}
 #brb.on [data-m]{display:none}#brb:not(.on) #brbx{display:none}#brb.on #brbL{color:var(--a);font-variant-numeric:tabular-nums}body.idle #brb{pointer-events:none}
 #tline{margin-top:.45rem;font-size:.68rem;color:var(--mu);display:flex;gap:.3rem;flex-wrap:wrap;justify-content:center}#tline b{color:var(--tx);font-weight:500}
 #news{position:fixed;right:0;top:3.2rem;bottom:3.4rem;width:min(320px,88vw);z-index:9;display:flex;flex-direction:column;background:var(--panel);backdrop-filter:blur(18px);border-left:1px solid var(--edge);border-radius:14px 0 0 14px;transform:translateX(105%);transition:transform .3s}
 body.news #news{transform:none}.nh{display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;font-size:.78rem}
-#ntabs{display:flex;gap:.3rem;padding:0 .6rem .5rem;overflow-x:auto}#ntabs .b{padding:.25rem .55rem;font-size:.64rem}#ntabs .b.on{border-color:var(--a);color:var(--a)}
+#ntabs{display:flex;flex-wrap:wrap;gap:.3rem;padding:0 .6rem .5rem}#ntabs .b{padding:.25rem .55rem;font-size:.64rem}#ntabs .b.on{border-color:var(--a);color:var(--a)}
 #nlist{flex:1;overflow-y:auto;padding:0 .8rem}.ni{padding:.55rem 0;border-top:1px solid var(--edge)}.ni a{color:var(--tx);text-decoration:none;font-size:.74rem;line-height:1.4;display:block}.ni a:hover{color:var(--a)}
 .ni small{display:block;margin-top:.2rem;font-size:.6rem;color:var(--mu)}.ni small a{display:inline;font-size:.6rem;color:var(--mu);text-decoration:underline}
 .ne{color:var(--mu);font-size:.7rem;padding:1rem 0;line-height:1.5}.nf{padding:.45rem .8rem;font-size:.6rem;color:var(--mu);border-top:1px solid var(--edge)}
 @media(min-width:1100px){body.news main{padding-right:320px}}body.idle #news{opacity:0;pointer-events:none}
+/* phones: apps become a scrollable dock above the taskbar instead of covering the page */
+@media(max-width:600px){.icons{position:fixed;inset:auto 0 3.2rem 0;top:auto!important;display:flex;flex-direction:row;flex-wrap:nowrap;align-content:normal;gap:.2rem;overflow-x:auto;padding:.3rem .6rem;pointer-events:auto;scrollbar-width:none}.icons::-webkit-scrollbar{display:none}.ic{position:static!important;flex:0 0 auto;cursor:pointer}main{padding-bottom:5.4rem}}
+@media(max-width:600px){footer{gap:.3rem;padding:.5rem .5rem;overflow-x:auto;scrollbar-width:none}footer .b{padding:.4rem .5rem}}
+@media(max-height:860px){#hint{display:none}}
+@media(max-height:720px){#log{display:none}.orbwrap{width:min(58vw,290px,30vh)}}
+@media(max-height:600px){#worlds{display:none}#brb{margin-top:.3rem}}
 /* minimise */
 .wbtns{display:flex;gap:.3rem}.b.min{opacity:.55;font-style:italic}
 @media(prefers-reduced-motion:reduce){#owl .dz circle,#owl .zz,#owl .hr,.core.unstable{animation:none}}
@@ -145,7 +153,7 @@ body.news #news{transform:none}.nh{display:flex;justify-content:space-between;al
 <div id="boot"><div id="bt">OWL NOCTURNE<span class="cur">&nbsp;</span></div><div id="bs">booting dreamstate…</div><div id="bb"><i></i></div></div>
 <header>
   <div class="pill" id="pill"><i></i><span id="st">AFK</span></div>
-  <input id="sb" list="cmds" placeholder="search, open an app, or !yt cats…" autocomplete="off" spellcheck="false" aria-label="search or launch"><datalist id="cmds"></datalist>
+  <input id="sb" size="1" list="cmds" placeholder="search, open an app, or !yt cats…" autocomplete="off" spellcheck="false" aria-label="search or launch"><datalist id="cmds"></datalist>
   <div><span id="wxh" style="cursor:pointer;margin-right:.6rem"></span><span id="modeLbl"></span> · <span id="clk">--:--</span></div>
 </header>
 <nav class="icons" id="icons"></nav>
