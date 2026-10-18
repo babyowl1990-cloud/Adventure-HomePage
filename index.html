@@ -44,7 +44,7 @@ h1{font-family:Orbitron,sans-serif;font-weight:900;font-size:clamp(2.2rem,9vw,3.
 .wc small{display:block;font-size:.6rem;letter-spacing:.08em;color:var(--mu);text-transform:uppercase}
 footer{display:flex;align-items:center;gap:.5rem;padding:.55rem .8rem;background:var(--panel);backdrop-filter:blur(18px);border-top:1px solid var(--edge)}
 #tasks{flex:1;display:flex;gap:.4rem;overflow-x:auto}
-button.b,label.b{font:inherit;font-size:.72rem;color:var(--tx);background:var(--panel);border:1px solid var(--edge);padding:.45rem .75rem;border-radius:10px;cursor:pointer;white-space:nowrap}
+button.b,label.b,a.b{font:inherit;font-size:.72rem;color:var(--tx);background:var(--panel);border:1px solid var(--edge);padding:.45rem .75rem;border-radius:10px;cursor:pointer;white-space:nowrap}
 button.b:hover{border-color:var(--a)}
 .win{position:fixed;width:min(92vw,380px);max-height:72dvh;display:flex;flex-direction:column;background:var(--panel);backdrop-filter:blur(20px) saturate(150%);border:1px solid var(--edge);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.4);z-index:10;overflow:hidden}
 .wh{display:flex;justify-content:space-between;align-items:center;padding:.6rem .8rem;border-bottom:1px solid var(--edge);font-size:.78rem;cursor:grab;touch-action:none;user-select:none}
@@ -119,6 +119,7 @@ body.idle .sn{opacity:0;pointer-events:none}
 #hint{margin-top:.5rem;font-size:.6rem;color:var(--mu);opacity:.6;transition:opacity .8s}
 #log{width:min(30rem,92%);height:4.7em;overflow:hidden;font-size:.64rem;line-height:1.55;color:var(--mu);text-align:left;margin-top:.7rem;border-top:1px solid var(--ed);padding-top:.35rem}
 #log div{animation:lf .5s both}#log .tg{color:var(--a)}@keyframes lf{from{opacity:0}to{opacity:.9}}#ctl{margin-top:.5rem}
+a.b{display:inline-flex;align-items:center;text-decoration:none}
 label.b{display:inline-flex;align-items:center;flex-direction:row;gap:.35rem}
 .win.big{width:min(94vw,780px);height:min(78dvh,640px);max-height:none;resize:both}
 .wb.fr{padding:0;flex:1;min-height:0;gap:0}
@@ -143,6 +144,9 @@ body.news #news{transform:none}.nh{display:flex;justify-content:space-between;al
 @media(max-height:860px){#hint{display:none}}
 @media(max-height:720px){#log{display:none}.orbwrap{width:min(58vw,290px,30vh)}}
 @media(max-height:600px){#worlds{display:none}#brb{margin-top:.3rem}}
+#owl .dk,#owl .db{display:none}#owl.duck .ob,#owl.duck .bk{display:none}#owl.duck .dk,#owl.duck .db{display:inline}
+#owl.duck .iris{fill:#fff}#owl.duck[data-m=spooky] .iris{fill:#ff5a3c}#owl.duck .ec path,#owl.duck .hy path,#owl.duck .br path{stroke:#6b4300}
+#owl.duck[data-m=surprised] .db{transform:scale(1.15)}#owl.duck.gold .dk>path,#owl.duck.gold .dbody{fill:#ffb21a}#owl.duck.gold .dk ellipse:nth-of-type(3),#owl.duck.gold .dk ellipse:nth-of-type(4){fill:#e08a00}
 /* minimise */
 .wbtns{display:flex;gap:.3rem}.b.min{opacity:.55;font-style:italic}
 @media(prefers-reduced-motion:reduce){#owl .dz circle,#owl .zz,#owl .hr,.core.unstable{animation:none}}
@@ -161,8 +165,9 @@ body.news #news{transform:none}.nh{display:flex;justify-content:space-between;al
   <div class="orbwrap">
     <svg id="owl" viewBox="0 0 64 64"><defs><linearGradient id="og" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--o1,#c3a6ff)"/><stop offset="1" style="stop-color:var(--o2,#6a3fd6)"/></linearGradient></defs>
       <g class="all">
-      <path d="M17 13L24 27 12 24Z" fill="url(#og)"/><path d="M47 13L40 27 52 24Z" fill="url(#og)"/>
-      <ellipse cx="32" cy="37" rx="21" ry="19" fill="url(#og)"/><circle cx="32" cy="35" r="15.5" fill="#150a28" opacity=".6"/>
+      <path class="ob" d="M17 13L24 27 12 24Z" fill="url(#og)"/><path class="ob" d="M47 13L40 27 52 24Z" fill="url(#og)"/>
+      <ellipse class="ob" cx="32" cy="37" rx="21" ry="19" fill="url(#og)"/><circle class="ob" cx="32" cy="35" r="15.5" fill="#150a28" opacity=".6"/>
+      <g class="dk"><path d="M32 12Q27 14 30 20Q33 17 35 19Q36 14 32 12Z" fill="#ffd23f"/><ellipse class="dbody" cx="32" cy="38" rx="22" ry="20" fill="#ffd23f"/><ellipse cx="32" cy="46" rx="13" ry="8" fill="#ffe680" opacity=".7"/><ellipse cx="10.5" cy="41" rx="4.5" ry="9" fill="#f5b800" transform="rotate(-12 10.5 41)"/><ellipse cx="53.5" cy="41" rx="4.5" ry="9" fill="#f5b800" transform="rotate(12 53.5 41)"/></g>
       <g class="hp"><path d="M12 33Q12 10 32 10Q52 10 52 33" stroke="#ff8fd8" stroke-width="3" fill="none"/><rect x="8" y="30" width="7" height="11" rx="3" fill="#ff8fd8"/><rect x="49" y="30" width="7" height="11" rx="3" fill="#ff8fd8"/></g>
       <g class="eo"><circle class="iris" cx="24" cy="35" r="5.2" fill="#c3a6ff"/><circle class="iris" cx="40" cy="35" r="5.2" fill="#c3a6ff"/><g class="pl"><circle class="pp" cx="24" cy="35" r="2.1" fill="#07030f"/><circle class="pp" cx="40" cy="35" r="2.1" fill="#07030f"/></g></g>
       <g class="ec"><path d="M19 35Q24 39 29 35M35 35Q40 39 45 35" stroke="#c3a6ff" stroke-width="2" fill="none" stroke-linecap="round"/></g>
@@ -172,7 +177,7 @@ body.news #news{transform:none}.nh{display:flex;justify-content:space-between;al
       <g class="br"><path class="b1" d="M18 27.5H30" stroke="#ece6ff" stroke-width="2" stroke-linecap="round"/><path class="b2" d="M34 27.5H46" stroke="#ece6ff" stroke-width="2" stroke-linecap="round"/></g>
       <g class="ch"><ellipse cx="16.5" cy="42" rx="3.4" ry="2" fill="#ff8fd8" opacity=".55"/><ellipse cx="47.5" cy="42" rx="3.4" ry="2" fill="#ff8fd8" opacity=".55"/></g>
       <g class="sh"><rect x="16.5" y="31" width="14" height="8" rx="2" fill="#0a0414"/><rect x="33.5" y="31" width="14" height="8" rx="2" fill="#0a0414"/><rect x="30.5" y="33" width="3" height="2" fill="#0a0414"/></g>
-      <path class="bk" d="M32 41L27.5 47.5H36.5Z" fill="#ff8fd8"/>
+      <path class="bk" d="M32 41L27.5 47.5H36.5Z" fill="#ff8fd8"/><g class="db"><ellipse cx="32" cy="45.5" rx="10" ry="5" fill="#ff8c1a"/><path d="M22.5 45.5Q32 49 41.5 45.5" stroke="#c76400" stroke-width=".9" fill="none"/><circle cx="29" cy="44.3" r=".9" fill="#c76400"/><circle cx="35" cy="44.3" r=".9" fill="#c76400"/></g>
       <path class="sw" d="M50 22Q53.5 27 50 30Q46.5 27 50 22Z" fill="#7ce3ff"/>
       </g>
       <g class="zz"><text x="47" y="16" font-size="9" fill="#c3a6ff" font-family="Orbitron,sans-serif">z</text><text x="53" y="9" font-size="6" fill="#c3a6ff" font-family="Orbitron,sans-serif">z</text></g></svg>
@@ -181,17 +186,17 @@ body.news #news{transform:none}.nh{display:flex;justify-content:space-between;al
   </div>
   <h1>AFK</h1><div id="timer">00:00:00</div>
   <div id="msg" contenteditable="true" spellcheck="false" role="textbox" aria-label="status message" title="click to edit your status">roosting for a bit — hoot if urgent</div>
-  <div id="tline"></div><div id="brb"><span id="brbL">back in</span><button class="b" data-m="5">5m</button><button class="b" data-m="15">15m</button><button class="b" data-m="30">30m</button><button class="b" data-m="60">1h</button><button class="b" id="brbx">✕ cancel</button></div><div id="worlds"></div><div id="log"></div><div id="hint">press / to search · ? for shortcuts · click the message to edit it · 📂 imports your own .html files · click the orb for a new chord</div>
+  <div id="tline"></div><div id="brb"><span id="brbL">back in</span><button class="b" data-m="5">5m</button><button class="b" data-m="15">15m</button><button class="b" data-m="30">30m</button><button class="b" data-m="60">1h</button><button class="b" id="brbx">✕ cancel</button></div><div id="worlds"></div><div id="log"></div><div id="hint">press / to search · ? for shortcuts · click the message to edit it · 📂 imports your own .html and .pdf files · click the orb for a new chord</div>
 </main>
 <div id="wins"></div><aside id="news" aria-label="news"><div class="nh"><b>📰 news</b><span><button class="b" id="nref" title="refresh">↻</button> <button class="b" id="nx" title="close">✕</button></span></div><div id="ntabs"></div><div id="nlist"></div><div id="nupd" class="nf"></div></aside>
 <div id="toast"></div>
-<footer><button class="b" id="start">🦉 OWL</button><div id="tasks"></div><button class="b" id="gear" title="settings">⚙</button><button class="b" id="play">▶ haze</button><label class="b" id="upl" title="import an .html file — it becomes an app on your start page" style="cursor:pointer">📂 html<input id="hfi" type="file" accept=".html,.htm,text/html" multiple hidden></label><button class="b" id="cp" title="copy a Discord / Slack-ready AFK line">📋 status</button><button class="b" id="nwb" title="news (n)">📰</button><input id="qf" type="file" accept="audio/*,video/*" hidden><span id="focL" style="font-size:.7rem;color:var(--a)"></span><span id="wk" style="font-size:.65rem;color:var(--mu)"></span></footer>
+<footer><button class="b" id="start">🦉 OWL</button><div id="tasks"></div><button class="b" id="gear" title="settings">⚙</button><button class="b" id="play">▶ haze</button><label class="b" id="upl" title="import .html or .pdf files — they become apps on your start page" style="cursor:pointer">📂 files<input id="hfi" type="file" accept=".html,.htm,text/html,.pdf,application/pdf" multiple hidden></label><button class="b" id="cp" title="copy a Discord / Slack-ready AFK line">📋 status</button><button class="b" id="nwb" title="news (n)">📰</button><input id="qf" type="file" accept="audio/*,video/*" hidden><span id="focL" style="font-size:.7rem;color:var(--a)"></span><span id="wk" style="font-size:.65rem;color:var(--mu)"></span></footer>
 
 <script>
 const $=s=>document.querySelector(s);
 const ST={get(k,d){try{const v=localStorage.getItem('on:'+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem('on:'+k,JSON.stringify(v))}catch(e){}}};
-const K=['mail','mode','sr','ss','acc','witch','wh','saver','links','hoots','msg','hid','pos','stk','wxp','unit','aw','twi','ey','fl','brb','eng','todo','hist','foc','nt','cd'];
-const D={mail:'',mode:'auto',sr:'06:30',ss:'18:30',acc:'',witch:true,wh:-1,saver:true,links:[],hoots:0,msg:null,hid:[],pos:{},stk:[],wxp:null,unit:'C',aw:false,twi:60,ey:false,fl:[],brb:0,eng:'ddg',todo:{d:'',items:[]},hist:{},foc:{ph:'work',run:0,end:0,left:0,n:0,w:25,b:5},nt:false,cd:{n:'',d:''}};
+const K=['mail','mode','sr','ss','acc','witch','wh','saver','links','hoots','msg','hid','pos','stk','wxp','unit','aw','twi','ey','fl','brb','eng','todo','hist','foc','nt','cd','duck'];
+const D={mail:'',mode:'auto',sr:'06:30',ss:'18:30',acc:'',witch:true,wh:-1,saver:true,links:[],hoots:0,msg:null,hid:[],pos:{},stk:[],wxp:null,unit:'C',aw:false,twi:60,ey:false,fl:[],brb:0,eng:'ddg',todo:{d:'',items:[]},hist:{},foc:{ph:'work',run:0,end:0,left:0,n:0,w:25,b:5},nt:false,cd:{n:'',d:''},duck:{u:0,on:0}};
 const S={};K.forEach(k=>S[k]=ST.get(k,D[k]));
 const save=()=>K.forEach(k=>ST.set(k,S[k]));
 S.links.forEach(l=>{l.id=l.id||'l'+Math.random().toString(36).slice(2,8)});
@@ -225,17 +230,17 @@ const baseMood=()=>idleNow?'sleepy':S.foc.run?(S.foc.ph=='work'?'cool':'happy'):
 function paintMood(){const m=mOv||baseMood();if(owl.dataset.m!==m)owl.dataset.m=m}
 function mood(m,ms){if(ms){mOv=m;clearTimeout(mT);mT=setTimeout(()=>{mOv=null;paintMood()},ms)}paintMood()}
 function owlTap(){
- hoot();S.hoots++;bump('hoots');const n=Date.now();taps=taps.filter(t=>n-t<2500);taps.push(n);
+ (S.duck.on?quack:hoot)();S.hoots++;bump('hoots');const n=Date.now();taps=taps.filter(t=>n-t<2500);taps.push(n);
  if(S.hoots==7){owl.classList.add('gold');say('🌟 feathers turning gold... you earned it');logPush('✨ GOLD OWL UNLOCKED');mood('love',4000);return}
- if(taps.length>=9){taps=[];mood('grumpy',3500);say('okay. that is ENOUGH hooting 😒');return}
- if(taps.length>=6){mood('dizzy',2500);say('too many hoots… 🌀');return}
+ if(taps.length>=9){taps=[];mood('grumpy',3500);say(S.duck.on?'okay. that is ENOUGH quacking 😒':'okay. that is ENOUGH hooting 😒');return}
+ if(taps.length>=6){mood('dizzy',2500);say(S.duck.on?'too many quacks… 🌀':'too many hoots… 🌀');return}
  if(S.hoots==4){say('something feels… golden… 3 more hoots ✨');mood('curious',1800);return}
- const p=witching()?OL.concat(WL):OL;say(p[Math.random()*p.length|0]);
+ const p=S.duck.on?DL:witching()?OL.concat(WL):OL;say(p[Math.random()*p.length|0]);
  Math.random()<.3?mood('surprised',800):mood('happy',1800)}
 owl.onclick=owlTap;
 owl.onpointerenter=()=>mood('curious',1400);
 addEventListener('pointermove',e=>{if(!S.ey)return;const r=owl.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height*.55),d=Math.hypot(dx,dy)||1,k=Math.min(2.2,d/60);owl.style.setProperty('--px',(dx/d*k).toFixed(2)+'px');owl.style.setProperty('--py',(dy/d*k).toFixed(2)+'px')},{passive:true});
-setInterval(()=>{if(Math.random()<.4){say((witching()?WL:OL)[Math.random()*3|0]);mood('curious',1500)}},24000);
+setInterval(()=>{if(Math.random()<.4){say((S.duck.on?DL:witching()?WL:OL)[Math.random()*3|0]);mood('curious',1500)}},24000);
 
 /* ---- clock / AFK state ---- */
 const t0=Date.now();let last=Date.now();
@@ -290,11 +295,12 @@ function settings(){
  <h4>countdown</h4><label>label<input id="s_cn" placeholder="trip, launch, birthday…" style="width:10rem"></label><label>date<input id="s_cd" type="date"></label>
  <h4>start page</h4><div style="color:var(--mu);font-size:.68rem;line-height:1.5">Chrome / Edge / Brave: Settings → On startup → Open a specific page → paste this address. Firefox: Settings → Home → Custom URLs. (A new-tab page needs an extension.)</div><div class="row"><input id="s_url" readonly style="flex:1"><button class="b" id="s_cu">copy</button></div>
  <h4>search</h4><label>default engine<select id="s_eng"><option value="ddg">DuckDuckGo</option><option value="google">Google</option><option value="brave">Brave</option><option value="bing">Bing</option><option value="startpage">Startpage</option></select></label>
- <h4>backup</h4><div style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="b" id="s_bk">export backup</button><label class="b" style="cursor:pointer">import backup<input id="s_bi" type="file" accept=".json,application/json" hidden></label></div><div style="color:var(--mu);font-size:.66rem">settings, notes, shortcuts and imported .html files · music tracks are not included</div>
+ <h4>backup</h4><div style="display:flex;gap:.4rem;flex-wrap:wrap"><button class="b" id="s_bk">export backup</button><label class="b" style="cursor:pointer">import backup<input id="s_bi" type="file" accept=".json,application/json" hidden></label></div><div style="color:var(--mu);font-size:.66rem">settings, notes, shortcuts and imported .html files · music tracks and PDFs are not included</div>
  <h4>power</h4>
  <label>desktop notifications (timers)<input id="s_nt" type="checkbox"></label>
  <label>keep screen awake<input id="s_awake" type="checkbox"></label>
- <label>owl eyes follow my cursor<input id="s_eyes" type="checkbox"></label><button class="b" id="s_oreset">reset owl (hoots &amp; gold)</button>
+ ${S.duck.u?'<label>mascot<select id="s_mas"><option value="owl">🦉 owl</option><option value="duck">🦆 duck</option></select></label>':''}
+ <label>mascot eyes follow my cursor<input id="s_eyes" type="checkbox"></label><button class="b" id="s_oreset">reset owl (hoots &amp; gold)</button>
  <label>screensaver when idle<input id="s_saver" type="checkbox"></label>
  <h4>data</h4><button class="b" id="s_reset">reset everything</button>`,b=>{
   const g=i=>b.querySelector('#'+i);
@@ -308,7 +314,7 @@ function settings(){
   g('s_wh').oninput=e=>{const v=parseInt(e.target.value);S.wh=isNaN(v)?-1:Math.min(23,Math.max(-1,v));save();theme()};
   g('s_accr').onclick=()=>{S.acc='';save();theme()};
   g('s_eyes').checked=!!S.ey;g('s_eyes').onchange=e=>{S.ey=e.target.checked;save();if(!S.ey){owl.style.setProperty('--px','0px');owl.style.setProperty('--py','0px')}};g('s_oreset').onclick=()=>{S.hoots=0;owl.classList.remove('gold');save();say('back to plain feathers 🦉')};
-  g('s_cn').value=S.cd.n;g('s_cd').value=S.cd.d;g('s_cn').oninput=e=>{S.cd.n=e.target.value.slice(0,24);save();tlinePaint()};g('s_cd').oninput=e=>{S.cd.d=e.target.value;save();tlinePaint()};g('s_url').value=location.href.split('#')[0];g('s_cu').onclick=()=>copyText(g('s_url').value).then(()=>toast('address copied'),()=>toast('select the address and copy it'));g('s_nt').checked=!!S.nt;g('s_nt').onchange=e=>{if(!e.target.checked){S.nt=false;save();return}if(typeof Notification==='undefined'){e.target.checked=false;toast('this browser has no notifications');return}Notification.requestPermission().then(r=>{S.nt=r=='granted';e.target.checked=S.nt;save();if(!S.nt)toast('notifications are blocked in your browser settings')})};g('s_eng').value=S.eng;g('s_eng').onchange=e=>{S.eng=e.target.value;save()};g('s_bk').onclick=exportAll;g('s_bi').onchange=e=>{importAll(e.target.files[0]);e.target.value=''};
+  g('s_cn').value=S.cd.n;g('s_cd').value=S.cd.d;g('s_cn').oninput=e=>{S.cd.n=e.target.value.slice(0,24);save();tlinePaint()};g('s_cd').oninput=e=>{S.cd.d=e.target.value;save();tlinePaint()};g('s_url').value=location.href.split('#')[0];g('s_cu').onclick=()=>copyText(g('s_url').value).then(()=>toast('address copied'),()=>toast('select the address and copy it'));g('s_nt').checked=!!S.nt;g('s_nt').onchange=e=>{if(!e.target.checked){S.nt=false;save();return}if(typeof Notification==='undefined'){e.target.checked=false;toast('this browser has no notifications');return}Notification.requestPermission().then(r=>{S.nt=r=='granted';e.target.checked=S.nt;save();if(!S.nt)toast('notifications are blocked in your browser settings')})};if(g('s_mas')){g('s_mas').value=S.duck.on?'duck':'owl';g('s_mas').onchange=e=>{const d=e.target.value=='duck';duckApply(d);d?quack():hoot();say(d?'quack. 🦆':'hoot. 🦉')}}g('s_eng').value=S.eng;g('s_eng').onchange=e=>{S.eng=e.target.value;save()};g('s_bk').onclick=exportAll;g('s_bi').onchange=e=>{importAll(e.target.files[0]);e.target.value=''};
   g('s_awake').onchange=async e=>{if(!await awake(e.target.checked))e.target.checked=false};
   g('s_reset').onclick=()=>{try{Object.keys(localStorage).filter(k=>k.startsWith('on:')).forEach(k=>localStorage.removeItem(k))}catch(e){}location.reload()}})}
 function add(){
@@ -321,11 +327,11 @@ function add(){
 const APPS=[['mail','✉️','contact',()=>mail()],['haze','🎧','haze',()=>haze()],['notes','📝','notes',()=>notes()],['paint','🎨','paint',()=>paint()],['synth','🎹','synth',()=>synth()],['term','▸','terminal',()=>term()],['wx','🌤️','weather',()=>weather()],['stk','📌','sticky',()=>sticky()],['todo','✅','today',()=>todo()],['foc','🍅','focus',()=>focusApp()],['stats','📊','stats',()=>stats()]];
 const ICW=68,ICH=72;
 const defPos=i=>{const r=Math.max(1,Math.floor((innerHeight-150)/ICH));return[10+Math.floor(i/r)*ICW,60+i%r*ICH]};
-function hide(d){if(d.li!=null){if(!confirm('remove shortcut "'+d.n+'"?'))return;S.links.splice(d.li,1);toast('removed '+d.n)}else if(d.fi!=null){if(!confirm('remove "'+d.n+'" from this page?'))return;S.fl.splice(d.fi,1);delete MEM[d.id];IDB.del('html:'+d.id).catch(()=>{});const w=wins['f_'+d.id];if(w)w.el.querySelector('[data-x]').click();toast('removed '+d.n)}else{S.hid.push(d.id);toast(d.n+' hidden · bring it back in ⚙ settings')}save();icons()}
+function hide(d){if(d.li!=null){if(!confirm('remove shortcut "'+d.n+'"?'))return;S.links.splice(d.li,1);toast('removed '+d.n)}else if(d.fi!=null){if(!confirm('remove "'+d.n+'" from this page?'))return;S.fl.splice(d.fi,1);delete MEM[d.id];IDB.del('html:'+d.id).catch(()=>{});IDB.del('pdf:'+d.id).catch(()=>{});delete PDFU[d.id];const w=wins['f_'+d.id];if(w)w.el.querySelector('[data-x]').click();toast('removed '+d.n)}else{S.hid.push(d.id);toast(d.n+' hidden · bring it back in ⚙ settings')}save();icons()}
 function icons(){cmdList();
  const el=$('#icons');el.innerHTML='';
  const L=APPS.filter(a=>!S.hid.includes(a[0])).map(a=>({id:a[0],e:a[1],n:a[2],f:a[3]}))
-  .concat(S.links.map((l,i)=>l.g?null:{id:l.id,e:l.e,n:l.n,li:i,f:()=>open(l.u,'_blank','noopener')}).filter(Boolean),[...new Set(S.links.filter(l=>l.g).map(l=>l.g))].map(g=>({id:'g_'+g,e:'📁',n:g.slice(0,12),keep:1,f:()=>folder(g)})),S.fl.map((f,i)=>({id:f.id,e:'📄',n:f.n.slice(0,12),fi:i,f:()=>openFile(f.id)})),[{id:'add',e:'＋',n:'add',f:add,keep:1}]);
+  .concat(S.links.map((l,i)=>l.g?null:{id:l.id,e:l.e,n:l.n,li:i,f:()=>open(l.u,'_blank','noopener')}).filter(Boolean),[...new Set(S.links.filter(l=>l.g).map(l=>l.g))].map(g=>({id:'g_'+g,e:'📁',n:g.slice(0,12),keep:1,f:()=>folder(g)})),S.fl.map((f,i)=>({id:f.id,e:f.k=='pdf'?'📕':'📄',n:f.n.slice(0,12),fi:i,f:()=>openFile(f.id)})),[{id:'add',e:'＋',n:'add',f:add,keep:1}]);
  L.forEach((d,i)=>{const b=document.createElement('button');b.className='ic';b.innerHTML=`<b>${d.e}</b>${d.n}`;
   const p=S.pos[d.id]||defPos(i);b.style.left=Math.max(0,Math.min(p[0],innerWidth-ICW))+'px';b.style.top=Math.max(44,Math.min(p[1],innerHeight-150))+'px';
   let sx=null,sy,ox,oy,mv=0,lp;
@@ -410,12 +416,12 @@ function synth(){win('synth','🎹 synth',`<label>wave<select id="sw"><option>tr
 function term(){win('term','▸ terminal',`<div id="to" style="white-space:pre-wrap;min-height:8rem;max-height:38dvh;overflow:auto;color:var(--a3)">owl shell. type help</div><div style="display:flex;gap:.4rem"><span style="color:var(--a)">guest@owl ~ %</span><input id="ti" style="flex:1;max-width:none;background:none;border:0;outline:0" autocomplete="off" autocapitalize="off"></div>`,b=>{
  const o=b.querySelector('#to'),i=b.querySelector('#ti'),out=t=>{o.textContent+='\n'+t;o.scrollTop=1e9};
  const AP={notes,settings,haze,paint,synth,weather,sticky,contact:mail,add,todo,focus:focusApp,stats,keys};
- const C={help:()=>'help · about · contact · date · hoot · clear · matrix · catch · mood <name> · status · copy · brb <min> · todo <text> · focus [stop] · stats · fortune · backup · upload (html) · music · theme <auto|day|sunset|night> · open <notes|settings|haze|paint|synth|weather|sticky|contact|add>',
+ const C={help:()=>'help · about · contact · date · hoot · clear · matrix · catch · mood <name> · status · copy · brb <min> · todo <text> · focus [stop] · stats · fortune · backup · upload (html/pdf) · music · theme <auto|day|sunset|night> · open <notes|settings|haze|paint|synth|weather|sticky|contact|add>',
   about:()=>'owl nocturne — an AFK orb wearing a toy web OS, honest about what a browser tab can do.',
   contact:()=>EMAIL,date:()=>new Date().toString(),hoot:()=>{hoot();return'hoot'},clear:()=>{o.textContent='';return''},
   matrix:()=>{matrix();return'wake up, owl…'},catch:()=>{openPhotonCatch();return'stray photons incoming…'},
-  status:()=>statusLine(),news:()=>{newsToggle();return'toggling the news panel'},fortune:()=>FORT[Math.random()*FORT.length|0],todo:a=>{if(a){todoAdd(a);return'added ✅'}todo();return'opening your list'},focus:a=>{if(a=='stop'){focReset();return'focus reset'}focusApp();S.foc.run||focStart();return'focus started 🍅'},stats:()=>{stats();return'opening stats'},keys:()=>{keys();return'shortcuts'},backup:()=>{exportAll();return'exporting backup…'},brb:a=>{const m=parseInt(a);if(a=='off'||m===0){brbSet(0);return'timer cleared'}if(!(m>=1&&m<=720))return'usage: brb <minutes> | brb off';brbSet(m);return'back in '+m+' min ☕'},
-  copy:()=>{copyText(statusLine());return'copied → '+statusLine()},upload:()=>{$('#hfi').click();return'pick an .html file…'},music:()=>{$('#qf').click();return'pick a track…'},
+  status:()=>statusLine(),duck:()=>{duckEgg();return'quack.'},news:()=>{newsToggle();return'toggling the news panel'},fortune:()=>FORT[Math.random()*FORT.length|0],todo:a=>{if(a){todoAdd(a);return'added ✅'}todo();return'opening your list'},focus:a=>{if(a=='stop'){focReset();return'focus reset'}focusApp();S.foc.run||focStart();return'focus started 🍅'},stats:()=>{stats();return'opening stats'},keys:()=>{keys();return'shortcuts'},backup:()=>{exportAll();return'exporting backup…'},brb:a=>{const m=parseInt(a);if(a=='off'||m===0){brbSet(0);return'timer cleared'}if(!(m>=1&&m<=720))return'usage: brb <minutes> | brb off';brbSet(m);return'back in '+m+' min ☕'},
+  copy:()=>{copyText(statusLine());return'copied → '+statusLine()},upload:()=>{$('#hfi').click();return'pick an .html or .pdf file…'},music:()=>{$('#qf').click();return'pick a track…'},
   mood:a=>MOODS.includes(a)?(mood(a,6000),'the owl feels '+a):'moods: '+MOODS.join(' · '),
   theme:a=>{if(['auto','day','sunset','night'].includes(a)){S.mode=a;save();theme()}return'mode: '+S.mode},
   open:a=>AP[a]?(AP[a](),'opened '+a):'unknown app: '+a};
@@ -467,7 +473,7 @@ const KON=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight',
 addEventListener('keydown',e=>{
  ki=e.key==KON[ki]?ki+1:(e.key==KON[0]?1:0);
  if(ki==KON.length){ki=0;document.body.classList.add('glitch');say('🌀 konami! the orb has opinions');mood('cool',6000);setTimeout(()=>document.body.classList.remove('glitch'),6000)}
- if(!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&!e.target.isContentEditable){mb=(mb+e.key).slice(-6);if(mb=='matrix')matrix();if(mb.endsWith('catch'))openPhotonCatch()}
+ if(!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&!e.target.isContentEditable){mb=(mb+e.key).slice(-6);if(mb=='matrix')matrix();if(mb.endsWith('catch'))openPhotonCatch();if(mb.endsWith('duck'))duckEgg()}
  const i='asdfghjk'.indexOf(e.key);if(i>=0&&wins.synth&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&!e.target.isContentEditable)note(NT[i][1])});
 console.log('%c🦉 owl nocturne','color:#c3a6ff;font-size:20px;font-weight:900');
 console.log('%cnosy, are we? try the Konami code, or type "matrix" or "catch" anywhere.','color:#ff8fd8');
@@ -670,18 +676,21 @@ $('#gear').onclick=settings;
  const go=()=>{clearInterval(t);b.classList.add('out');setTimeout(()=>b.remove(),950)};
  setTimeout(go,2400);b.onclick=go})();
 /* ---- import your own .html files (kept in the browser, open as sandboxed apps) ---- */
-const MEM={};
+const MEM={},PDFU={};
 const readText=f=>f.text?f.text():new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);x.readAsText(f)});
 async function importHtml(f){
- if(!/\.html?$/i.test(f.name)){toast('only .html files can be imported');return}
- if(f.size>8e6){toast('that file is over 8 MB');return}
- const text=await readText(f),id='f'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
- MEM[id]=text;try{await IDB.put('html:'+id,text)}catch(e){toast('imported, but it will not be remembered after a reload')}
- S.fl.push({id,n:f.name.replace(/\.html?$/i,''),t:0});save();icons();logPush('📂 imported '+f.name);openFile(id)}
+ const pdf=/\.pdf$/i.test(f.name)||f.type=='application/pdf';
+ if(!pdf&&!/\.html?$/i.test(f.name)){toast('only .html and .pdf files can be imported');return}
+ if(f.size>(pdf?60e6:8e6)){toast('that file is over '+(pdf?60:8)+' MB');return}
+ const data=pdf?f:await readText(f),id='f'+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+ MEM[id]=data;try{await IDB.put((pdf?'pdf:':'html:')+id,data)}catch(e){toast('imported, but it will not be remembered after a reload')}
+ S.fl.push({id,n:f.name.replace(/\.(html?|pdf)$/i,''),t:0,k:pdf?'pdf':'html'});save();icons();logPush('📂 imported '+f.name);openFile(id)}
 async function openFile(id){
  const it=S.fl.find(x=>x.id==id);if(!it)return;
- let text=MEM[id];if(text==null){try{text=await IDB.get('html:'+id)}catch(e){}}
+ const pdf=it.k=='pdf';let text=MEM[id];if(text==null){try{text=await IDB.get((pdf?'pdf:':'html:')+id)}catch(e){}}
  if(text==null){toast('could not load that file — import it again');return}
+ if(pdf){const url=PDFU[id]||(PDFU[id]=URL.createObjectURL(text)),nm=it.n.replace(/"/g,'');
+  win('f_'+id,'📕 '+it.n.slice(0,14),`<div class="fbar"><span>pdf</span><a class="b" href="${url}" target="_blank" rel="noopener">↗ new tab</a><a class="b" href="${url}" download="${nm}.pdf">⬇ save</a></div><iframe title="${nm}" src="${url}"></iframe>`,b=>{},{big:1});return}
  const sb=t=>'allow-scripts allow-forms allow-modals allow-popups allow-downloads'+(t?' allow-same-origin':'');
  win('f_'+id,'📄 '+it.n.slice(0,14),`<div class="fbar"><span>sandboxed</span><label class="b"><input type="checkbox" class="ftr"${it.t?' checked':''}> allow storage (trusted)</label><button class="b frl">↻ reload</button></div><iframe title="${it.n.replace(/"/g,'')}"></iframe>`,b=>{
   const fr=b.querySelector('iframe'),tr=b.querySelector('.ftr'),go=()=>{fr.setAttribute('sandbox',sb(it.t));fr.srcdoc=text};
@@ -719,7 +728,7 @@ $('#brb').querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>brbSet(+b.datase
 /* ---- backup / restore everything stored in this browser ---- */
 async function exportAll(){const o={v:1,ls:{},html:{}};
  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k.startsWith('on:')&&!k.startsWith('on:nc_'))o.ls[k]=localStorage.getItem(k)}
- for(const f of S.fl){let t=MEM[f.id];if(t==null){try{t=await IDB.get('html:'+f.id)}catch(e){}}if(t!=null)o.html[f.id]=t}
+ for(const f of S.fl){if(f.k=='pdf')continue;let t=MEM[f.id];if(t==null){try{t=await IDB.get('html:'+f.id)}catch(e){}}if(t!=null)o.html[f.id]=t}
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(o)],{type:'application/json'}));a.download='owl-startpage-backup.json';a.click();toast('backup downloaded')}
 async function importAll(f){if(!f)return;let o;try{o=JSON.parse(await readText(f));if(!o||!o.ls)throw 0}catch(e){toast("that isn't a backup file");return}
  if(!confirm('Replace everything on this page with the backup?'))return;
@@ -834,6 +843,19 @@ $('#nwb').onclick=()=>newsToggle();$('#nx').onclick=()=>newsToggle(false);$('#nr
 setInterval(()=>{if(document.body.classList.contains('news')&&!document.hidden)newsLoad(NK,true)},9e5);
 {const nw=ST.get('nw',null);newsToggle(nw===null?innerWidth>=1100:nw)}
 
+/* ---- secret: type "duck" ---- */
+const DL=['quack.','quack?','QUACK!','🦆 …quack','quack quack','*waddles*','is that bread?','bread?','pond status: serene'];
+function quack(){try{ac=ac||new AudioContext();ac.resume();[[0,1],[.2,.85]].forEach(([d,k])=>{const t=ac.currentTime+d,o=ac.createOscillator(),f=ac.createBiquadFilter(),g=ac.createGain(),v=ac.createOscillator(),vg=ac.createGain();
+ o.type='sawtooth';o.frequency.setValueAtTime(430*k,t);o.frequency.exponentialRampToValueAtTime(250*k,t+.16);
+ v.frequency.value=38;vg.gain.value=22;v.connect(vg).connect(o.frequency);
+ f.type='bandpass';f.frequency.setValueAtTime(1500,t);f.frequency.exponentialRampToValueAtTime(800,t+.16);f.Q.value=3.2;
+ g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.26,t+.015);g.gain.exponentialRampToValueAtTime(.0001,t+.2);
+ o.connect(f).connect(g).connect(ac.destination);o.start(t);v.start(t);o.stop(t+.22);v.stop(t+.22)})}catch(e){}}
+function duckApply(on){S.duck.on=on?1:0;owl.classList.toggle('duck',!!on);$('#start').textContent=on?'🦆 DUCK':'🦉 OWL';save()}
+function duckEgg(){const first=!S.duck.u;S.duck.u=1;duckApply(1);quack();mood('surprised',900);setTimeout(()=>mood('happy',2200),900);
+ say(first?'🦆 QUACK! …wait. what did you do to me?':'quack. 🦆');if(first){logPush('🦆 DUCK UNLOCKED — pick your mascot in settings');toast('🦆 secret unlocked — the mascot choice is in settings')}}
+duckApply(S.duck.on);
+
 $('#qf').onchange=e=>{loadTrack(e.target.files[0]);e.target.value=''};
 /* ---- terminal log ticker + discord/slack-ready status line ---- */
 const LOG_LINES = [
@@ -859,6 +881,7 @@ logTick();setInterval(logTick,4200);
 const statusLine=()=>{const r=S.brb-Date.now();if(S.foc.run&&S.foc.ph=='work')return '🍅 Focusing ('+Math.ceil(focLeft()/6e4)+'m left) — '+$('#msg').textContent.trim();return '🟣 AFK for '+$('#timer').textContent+' — '+$('#msg').textContent.trim()+(S.brb&&r>0?' (back in ~'+Math.ceil(r/6e4)+'m)':'')};
 function copyText(t){return(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).catch(()=>{const x=document.createElement('textarea');x.value=t;x.style.cssText='position:fixed;opacity:0';document.body.appendChild(x);x.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}x.remove();return ok?0:Promise.reject()})}
 $('#cp').onclick=()=>copyText(statusLine()).then(()=>{$('#cp').textContent='copied ✓';setTimeout(()=>$('#cp').textContent='📋 status',1400)},()=>toast("couldn't copy — select the message instead"));
+LOG_LINES.push('pond status: suspiciously quiet');
 stk();
 icons();theme();tick();if(S.aw)awake(true,1);
 </script>
